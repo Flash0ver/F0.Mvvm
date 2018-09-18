@@ -4,6 +4,20 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <AssemblyName>F0.Mvvm</AssemblyName>
     <RootNamespace>F0</RootNamespace>
+    <PackageId>F0.Mvvm</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Flash0ver</Authors>
+    <Company>f[0]</Company>
+    <Product>F0.Mvvm</Product>
+    <Description>This package contains implementations of the MVVM pattern typically consumed by XAML applications and class libraries.</Description>
+    <Copyright>© f[0]</Copyright>
+    <PackageLicenseUrl>https://github.com/Flash0ver/F0.Mvvm/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Flash0ver/F0.Mvvm</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Flash0ver/F0/master/Branding/NuGet/F0.Mvvm.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Flash0ver/F0.Mvvm</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>f[0] f0 mvvm xaml</PackageTags>
+    <PackageReleaseNotes>Initial upload providing a common ViewModel implementation (System.ComponentModel.INotifyPropertyChanged).</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
