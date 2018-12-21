@@ -5,7 +5,7 @@
     <AssemblyName>F0.Mvvm</AssemblyName>
     <RootNamespace>F0</RootNamespace>
     <PackageId>F0.Mvvm</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>Flash0ver</Authors>
     <Company>f[0]</Company>
     <Product>F0.Mvvm</Product>
@@ -17,7 +17,7 @@
     <RepositoryUrl>https://github.com/Flash0ver/F0.Mvvm</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>f[0] f0 mvvm xaml</PackageTags>
-    <PackageReleaseNotes>Initial upload providing a common ViewModel implementation (System.ComponentModel.INotifyPropertyChanged).</PackageReleaseNotes>
+    <PackageReleaseNotes>Added both parameterless and strongly typed abstractions and implementations of System.Windows.Input.ICommand.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

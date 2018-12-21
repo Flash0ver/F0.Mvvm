@@ -2,6 +2,8 @@
 CHANGELOG
 
 ## vNext
+
+## v0.2.0 (2018-12-21)
 - Added implementation of `Windows.Input.IInputCommand`, a parameterless `System.Windows.Input.ICommand` abstraction.
 - Added implementation of `Windows.Input.IInputCommand<T>`, a strongly typed `System.Windows.Input.ICommand` abstraction.
 
