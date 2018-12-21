@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F0.Mvvm.Example.ComponentMo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F0.Mvvm", "..\..\source\F0.Mvvm\F0.Mvvm\F0.Mvvm.csproj", "{27A4FDEE-E689-450D-B5BF-CB13738586F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F0.Mvvm.Example.Windows.Input", "F0.Mvvm.Example.Windows.Input\F0.Mvvm.Example.Windows.Input.csproj", "{A2EE6439-D5D9-44B8-A012-1AE2C88E45F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{27A4FDEE-E689-450D-B5BF-CB13738586F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27A4FDEE-E689-450D-B5BF-CB13738586F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27A4FDEE-E689-450D-B5BF-CB13738586F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2EE6439-D5D9-44B8-A012-1AE2C88E45F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EE6439-D5D9-44B8-A012-1AE2C88E45F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EE6439-D5D9-44B8-A012-1AE2C88E45F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EE6439-D5D9-44B8-A012-1AE2C88E45F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
