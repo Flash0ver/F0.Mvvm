@@ -19,7 +19,7 @@
     <PackageLicenseUrl>https://github.com/Flash0ver/F0.Mvvm/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Flash0ver/F0.Mvvm</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Flash0ver/F0/master/Branding/NuGet/F0.Mvvm.png</PackageIconUrl>
-    <RepositoryUrl>https://github.com/Flash0ver/F0.Mvvm</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Flash0ver/F0.Mvvm.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>f[0] f0 mvvm xaml</PackageTags>
     <PackageReleaseNotes>Added both parameterless and strongly typed abstractions and implementations of System.Windows.Input.ICommand.</PackageReleaseNotes>
