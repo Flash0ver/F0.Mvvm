@@ -16,7 +16,7 @@
     <Product>F0.Mvvm</Product>
     <Description>This package contains implementations of the MVVM pattern typically consumed by XAML applications and class libraries.</Description>
     <Copyright>© f[0]</Copyright>
-    <PackageLicenseUrl>https://github.com/Flash0ver/F0.Mvvm/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Flash0ver/F0.Mvvm</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Flash0ver/F0/master/Branding/NuGet/F0.Mvvm.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/Flash0ver/F0.Mvvm.git</RepositoryUrl>
