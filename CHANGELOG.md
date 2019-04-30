@@ -2,6 +2,8 @@
 CHANGELOG
 
 ## vNext
+
+## v0.3.0 (2019-04-30)
 - Changed target framework from `.NET Standard 1.0` to `.NET Standard 2.0`.
 
 ## v0.2.0 (2018-12-21)
