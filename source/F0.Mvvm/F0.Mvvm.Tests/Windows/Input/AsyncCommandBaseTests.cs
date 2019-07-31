@@ -10,7 +10,7 @@ namespace F0.Tests.Windows.Input
 	public class AsyncCommandBaseTests
 	{
 		[Fact]
-		public void AsyncCommandBase_FrameworkMethodsMustBeCalledWithoutData()
+		public async Task AsyncCommandBase_FrameworkMethodsMustBeCalledWithoutData()
 		{
 			ICommand command = new AsyncTestCommand();
 
@@ -19,11 +19,11 @@ namespace F0.Tests.Windows.Input
 			Assert.Throws<ArgumentException>("parameter", () => command.CanExecute(240));
 
 			command.Execute(null);
-			Assert.ThrowsAsync<ArgumentException>("parameter", () => ((AsyncCommandBase)command).InternalExecuteAsync(240));
+			await Assert.ThrowsAsync<ArgumentException>("parameter", () => ((AsyncCommandBase)command).InternalExecuteAsync(240));
 		}
 
 		[Fact]
-		public void AsyncCommandBase_T_FrameworkMethodsMustBeCalledWithData_ValueType()
+		public async Task AsyncCommandBase_T_FrameworkMethodsMustBeCalledWithData_ValueType()
 		{
 			ICommand command = new AsyncTestCommand<int>();
 
@@ -32,11 +32,11 @@ namespace F0.Tests.Windows.Input
 			Assert.Throws<NullReferenceException>(() => command.CanExecute(null));
 
 			command.Execute(240);
-			Assert.ThrowsAsync<NullReferenceException>(() => ((AsyncCommandBase<int>)command).InternalExecuteAsync(null));
+			await Assert.ThrowsAsync<NullReferenceException>(() => ((AsyncCommandBase<int>)command).InternalExecuteAsync(null));
 		}
 
 		[Fact]
-		public void AsyncCommandBase_T_FrameworkMethodsMustBeCalledWithData_ReferenceType()
+		public async Task AsyncCommandBase_T_FrameworkMethodsMustBeCalledWithData_ReferenceType()
 		{
 			ICommand command = new AsyncTestCommand<string>();
 
@@ -45,16 +45,16 @@ namespace F0.Tests.Windows.Input
 			Assert.Throws<ArgumentNullException>("parameter", () => command.CanExecute(null));
 
 			command.Execute("240");
-			Assert.ThrowsAsync<ArgumentNullException>("parameter", () => ((AsyncCommandBase<string>)command).InternalExecuteAsync(null));
+			await Assert.ThrowsAsync<ArgumentNullException>("parameter", () => ((AsyncCommandBase<string>)command).InternalExecuteAsync(null));
 		}
 
 		[Fact]
-		public void AsyncCommandBase_T_NonGenericFrameworkMethodsMustBeCalledWithDataOfTypeCompatibleWithGenericTypeParameter()
+		public async Task AsyncCommandBase_T_NonGenericFrameworkMethodsMustBeCalledWithDataOfTypeCompatibleWithGenericTypeParameter()
 		{
 			ICommand command = new AsyncTestCommand<float>();
 
 			Assert.Throws<InvalidCastException>(() => command.CanExecute(240.0));
-			Assert.ThrowsAsync<InvalidCastException>(() => ((AsyncCommandBase<float>)command).InternalExecuteAsync(240.0));
+			await Assert.ThrowsAsync<InvalidCastException>(() => ((AsyncCommandBase<float>)command).InternalExecuteAsync(240.0));
 		}
 
 		[Fact]
