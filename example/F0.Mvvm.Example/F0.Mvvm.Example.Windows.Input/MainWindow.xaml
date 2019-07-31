@@ -33,6 +33,15 @@
 				<Button Content="Subtract" CommandParameter="{Binding Path=Parameter}" Command="{Binding Path=SubtractCommand}" />
 				<TextBlock Text="{Binding Path=Parameter}" />
 			</StackPanel>
+
+			<Separator />
+
+			<StackPanel Orientation="Vertical">
+				<Button Content="Fetch Repository Info" Command="{Binding Path=ReadGitHubCommand}" />
+				<ScrollViewer Height="240">
+					<TextBox IsReadOnly="True" Text="{Binding Path=RepoInfo}" />
+				</ScrollViewer>
+			</StackPanel>
 		</StackPanel>
 	</Grid>
 </Window>

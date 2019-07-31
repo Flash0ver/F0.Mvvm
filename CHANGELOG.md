@@ -2,6 +2,8 @@
 CHANGELOG
 
 ## vNext
+- Added implementation of `Windows.Input.IAsyncCommand`, a parameterless and asynchronous `System.Windows.Input.ICommand` abstraction.
+- Added implementation of `Windows.Input.IAsyncCommand<T>`, a strongly typed and asynchronous `System.Windows.Input.ICommand` abstraction.
 
 ## v0.3.0 (2019-04-30)
 - Changed target framework from `.NET Standard 1.0` to `.NET Standard 2.0`.
