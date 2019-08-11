@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5AD5E1BC-C74B-4228-BA63-37F8C7ABEA2F}</ProjectGuid>
+    <ProjectGuid>{A2EE6439-D5D9-44B8-A012-1AE2C88E45F0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>F0.Mvvm.Example.ComponentModel</RootNamespace>
-    <AssemblyName>F0.Mvvm.Example.ComponentModel</AssemblyName>
+    <RootNamespace>F0.Mvvm.Example.Windows.Input</RootNamespace>
+    <AssemblyName>F0.Mvvm.Example.Windows.Input</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,7 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -48,7 +50,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BindingSource.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,10 +91,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\source\F0.Mvvm\F0.Mvvm\F0.Mvvm.csproj">
-      <Project>{27A4FDEE-E689-450D-B5BF-CB13738586F0}</Project>
+    <ProjectReference Include="..\..\production\F0.Mvvm\F0.Mvvm.csproj">
+      <Project>{76772F83-CC73-47E3-84F6-4CFE38665ECB}</Project>
       <Name>F0.Mvvm</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Octokit">
+      <Version>0.32.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
