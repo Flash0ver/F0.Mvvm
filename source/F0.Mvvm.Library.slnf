@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "F0.Mvvm.sln",
+    "projects": [
+      "production\\F0.Mvvm\\F0.Mvvm.csproj"
+    ]
+  }
+}
