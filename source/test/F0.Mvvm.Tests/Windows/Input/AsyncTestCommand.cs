@@ -28,11 +28,11 @@ namespace F0.Tests.Windows.Input
 			isEnabled = true;
 		}
 
-		internal AsyncTestCommand(Action onCanExecute, Action onExecute)
+		internal AsyncTestCommand(Action onCanExecute, Func<Task> onExecute)
 			: this()
 		{
 			this.onCanExecute = onCanExecute;
-			this.onExecute = () => { onExecute(); return Task.CompletedTask; };
+			this.onExecute = onExecute;
 		}
 
 		protected override bool OnCanExecute()
@@ -71,11 +71,11 @@ namespace F0.Tests.Windows.Input
 			isEnabled = true;
 		}
 
-		internal AsyncTestCommand(Action<T> onCanExecute, Action<T> onExecute)
+		internal AsyncTestCommand(Action<T> onCanExecute, Func<T, Task> onExecute)
 			: this()
 		{
 			this.onCanExecute = onCanExecute;
-			this.onExecute = param => { onExecute(param); return Task.CompletedTask; };
+			this.onExecute = onExecute;
 		}
 
 		protected override bool OnCanExecute(T parameter)

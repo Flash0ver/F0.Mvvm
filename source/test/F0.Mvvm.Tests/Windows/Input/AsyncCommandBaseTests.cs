@@ -61,7 +61,7 @@ namespace F0.Tests.Windows.Input
 		public void AsyncCommandBase_FrameworkMethodsCallIntoParameterlessImplementations()
 		{
 			string text = null;
-			ICommand command = new AsyncTestCommand(() => text = nameof(ICommand.CanExecute), () => text = nameof(ICommand.Execute));
+			ICommand command = new AsyncTestCommand(() => text = nameof(ICommand.CanExecute), () => { text = nameof(ICommand.Execute); return Task.CompletedTask; });
 
 			bool canExecute = command.CanExecute(null);
 			Assert.Equal("CanExecute", text);
@@ -75,7 +75,7 @@ namespace F0.Tests.Windows.Input
 		public void AsyncCommandBase_T_FrameworkMethodsCallIntoStronglyTypedImplementations()
 		{
 			string text = null;
-			ICommand command = new AsyncTestCommand<string>(t => text = t, t => text = t);
+			ICommand command = new AsyncTestCommand<string>(t => text = t, t => { text = t; return Task.CompletedTask; });
 
 			bool canExecute = command.CanExecute(nameof(ICommand.CanExecute));
 			Assert.Equal("CanExecute", text);
@@ -116,7 +116,7 @@ namespace F0.Tests.Windows.Input
 		public async Task AsyncCommandBase_EncourageTheUseOfOverloadedMethodsWhichTakeNoParameter()
 		{
 			string text = null;
-			IAsyncCommand command = new AsyncTestCommand(() => text = nameof(IAsyncCommand.CanExecute), () => text = nameof(IAsyncCommand.Execute));
+			IAsyncCommand command = new AsyncTestCommand(() => text = nameof(IAsyncCommand.CanExecute), async () => { await Task.Yield(); text = nameof(IAsyncCommand.Execute); });
 
 			bool canExecute = command.CanExecute();
 			Assert.Equal("CanExecute", text);
@@ -130,7 +130,7 @@ namespace F0.Tests.Windows.Input
 		public async Task AsyncCommandBase_T_EncourageTheUseOfOverloadedMethodsWhichTakeGenericParameter()
 		{
 			string text = null;
-			IAsyncCommand<string> command = new AsyncTestCommand<string>(t => text = t, t => text = t);
+			IAsyncCommand<string> command = new AsyncTestCommand<string>(t => text = t, async t => { await Task.Yield(); text = t; });
 
 			bool canExecute = command.CanExecute(nameof(IAsyncCommand<string>.CanExecute));
 			Assert.Equal("CanExecute", text);
