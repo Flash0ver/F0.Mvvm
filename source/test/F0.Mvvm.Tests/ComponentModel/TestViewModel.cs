@@ -10,7 +10,7 @@ namespace F0.Tests.ComponentModel
 		public Tuple<int> Property
 		{
 			get => backingField;
-			set => SetField(ref backingField, value);
+			set => SetProperty(ref backingField, value);
 		}
 
 		private Tuple<int> tryField;
@@ -19,7 +19,7 @@ namespace F0.Tests.ComponentModel
 			get => tryField;
 			set
 			{
-				if (TrySetField(ref tryField, value))
+				if (TrySetProperty(ref tryField, value))
 				{
 					modifications.Add(value);
 				}

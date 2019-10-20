@@ -11,14 +11,14 @@ namespace F0.Mvvm.Example.ComponentModel
 		public T Value
 		{
 			get => _value;
-			set => HasChanged = TrySetField(ref _value, value);
+			set => HasChanged = TrySetProperty(ref _value, value);
 		}
 
 		private bool hasChanged;
 		public bool HasChanged
 		{
 			get => hasChanged;
-			private set => SetField(ref hasChanged, value);
+			private set => SetProperty(ref hasChanged, value);
 		}
 
 		internal BindingSource()

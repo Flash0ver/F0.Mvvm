@@ -14,7 +14,7 @@ namespace F0.Mvvm.Example.Windows.Input
 		public int Number
 		{
 			get => number;
-			set => SetField(ref number, value);
+			set => SetProperty(ref number, value);
 		}
 
 		private int parameter = 0;
@@ -23,7 +23,7 @@ namespace F0.Mvvm.Example.Windows.Input
 			get => parameter;
 			set
 			{
-				if (TrySetField(ref parameter, value))
+				if (TrySetProperty(ref parameter, value))
 				{
 					AddCommand.RaiseCanExecuteChanged();
 					SubtractCommand.RaiseCanExecuteChanged();
@@ -40,14 +40,14 @@ namespace F0.Mvvm.Example.Windows.Input
 		public string RepoInfo
 		{
 			get => repoInfo;
-			set => SetField(ref repoInfo, value);
+			set => SetProperty(ref repoInfo, value);
 		}
 
 		private string userInfo;
 		public string UserInfo
 		{
 			get => userInfo;
-			set => SetField(ref userInfo, value);
+			set => SetProperty(ref userInfo, value);
 		}
 
 		public IAsyncCommand ReadGitHubRepoCommand { get; }

@@ -14,24 +14,24 @@ namespace F0.ComponentModel
 		{
 		}
 
-		protected void SetField<TField>(ref TField field, TField value, [CallerMemberName] string propertyName = "")
+		protected void SetProperty<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
 		{
-			if (!EqualityComparer<TField>.Default.Equals(field, value))
+			if (!EqualityComparer<T>.Default.Equals(backingField, value))
 			{
-				field = value;
+				backingField = value;
 				RaisePropertyChangedEvent(propertyName);
 			}
 		}
 
-		protected bool TrySetField<TField>(ref TField field, TField value, [CallerMemberName] string propertyName = "")
+		protected bool TrySetProperty<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
 		{
-			if (EqualityComparer<TField>.Default.Equals(field, value))
+			if (EqualityComparer<T>.Default.Equals(backingField, value))
 			{
 				return false;
 			}
 			else
 			{
-				field = value;
+				backingField = value;
 				RaisePropertyChangedEvent(propertyName);
 				return true;
 			}
