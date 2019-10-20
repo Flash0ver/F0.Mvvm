@@ -10,7 +10,7 @@ namespace F0.Windows.Input
 		new bool CanExecute(object parameter);
 		bool CanExecute();
 
-		[Obsolete("Prefer Task-returning parameterless " + nameof(Execute) + " method.", true)]
+		[Obsolete("Prefer Task-returning parameterless " + nameof(ExecuteAsync) + " method.", true)]
 		new void Execute(object parameter);
 		Task ExecuteAsync();
 
@@ -23,7 +23,7 @@ namespace F0.Windows.Input
 		new bool CanExecute(object parameter);
 		bool CanExecute(T parameter);
 
-		[Obsolete("Prefer Task-returning strongly typed " + nameof(Execute) + " method.", true)]
+		[Obsolete("Prefer Task-returning strongly typed " + nameof(ExecuteAsync) + " method.", true)]
 		new void Execute(object parameter);
 		Task ExecuteAsync(T parameter);
 
