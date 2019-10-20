@@ -2,6 +2,8 @@
 CHANGELOG
 
 ## vNext
+- Added implementation of `Windows.Input.IAsyncCommandSlim`, a parameterless and allocation-free asynchronous `System.Windows.Input.ICommand` abstraction.
+- Added implementation of `Windows.Input.IAsyncCommandSlim<T>`, a strongly typed and allocation-free asynchronous `System.Windows.Input.ICommand` abstraction.
 
 ## v0.4.0 (2019-07-31)
 - Added implementation of `Windows.Input.IAsyncCommand`, a parameterless and asynchronous `System.Windows.Input.ICommand` abstraction.

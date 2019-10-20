@@ -43,7 +43,15 @@ namespace F0.Mvvm.Example.Windows.Input
 			set => SetField(ref repoInfo, value);
 		}
 
-		public IAsyncCommand ReadGitHubCommand { get; }
+		private string userInfo;
+		public string UserInfo
+		{
+			get => userInfo;
+			set => SetField(ref userInfo, value);
+		}
+
+		public IAsyncCommand ReadGitHubRepoCommand { get; }
+		public IAsyncCommandSlim ReadGitHubUserCommand { get; }
 
 		public MainViewModel()
 		{
@@ -52,13 +60,14 @@ namespace F0.Mvvm.Example.Windows.Input
 			AddCommand = Command.Create<int>(parameter => Number += parameter, parameter => parameter != 0);
 			SubtractCommand = Command.Create<int>(parameter => Number -= parameter, parameter => parameter != 0);
 
-			ReadGitHubCommand = Command.Create(FetchRepoInfoAsync);
+			ReadGitHubRepoCommand = Command.Create(FetchRepoInfoAsync);
+			ReadGitHubUserCommand = Command.Create(FetchUserInfoAsync);
 		}
 
 		private async Task FetchRepoInfoAsync()
 		{
-			string owner = "Flash0ver";
-			string reponame = "F0.Mvvm";
+			const string owner = "Flash0ver";
+			const string reponame = "F0.Mvvm";
 
 			var client = new GitHubClient(new ProductHeaderValue("F0.Mvvm.Example"));
 
@@ -66,7 +75,7 @@ namespace F0.Mvvm.Example.Windows.Input
 			Repository repository = await client.Repository.Get(owner, reponame);
 			IReadOnlyList<Release> releases = await client.Repository.Release.GetAll(owner, reponame);
 
-			string text = $"Repository: {repository.FullName} | {repository.HtmlUrl}\n";
+			string text = $"Repository: {repository.FullName} ({repository.HtmlUrl})\n";
 			text += $"* Name: {repository.Name}\n";
 			text += $"* Owner: {repository.Owner.Login} ({user.Followers} followers)\n";
 			text += $"* {repository.SubscribersCount} watchers\n";
@@ -90,6 +99,25 @@ namespace F0.Mvvm.Example.Windows.Input
 			text += builder.ToString();
 
 			RepoInfo = text;
+		}
+
+		private async ValueTask FetchUserInfoAsync()
+		{
+			const string owner = "Flash0ver";
+
+			var client = new GitHubClient(new ProductHeaderValue("F0.Mvvm.Example"));
+
+			User user = await client.User.Get(owner);
+
+			string text = $"{user.Type}: {user.Login} ({user.HtmlUrl})\n";
+			text += $"* Bio: {user.Bio}\n";
+			text += $"* Location: {user.Location}\n";
+			text += $"* {user.PublicRepos + user.OwnedPrivateRepos} Repos owned\n";
+			text += $"* {user.PublicGists + user.PrivateGists.GetValueOrDefault()} Gists created\n";
+			text += $"* {user.Followers} followers\n";
+			text += $"* Following {user.Following} users\n";
+
+			UserInfo = text;
 		}
 	}
 }

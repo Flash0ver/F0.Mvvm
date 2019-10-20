@@ -25,4 +25,8 @@
     <PackageReleaseNotes>Added both parameterless and strongly typed abstractions and implementations of an asynchronous System.Windows.Input.ICommand.</PackageReleaseNotes>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
+  </ItemGroup>
+
 </Project>

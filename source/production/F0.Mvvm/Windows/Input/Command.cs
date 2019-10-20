@@ -44,5 +44,25 @@ namespace F0.Windows.Input
 		{
 			return new AsyncRelayCommand<T>(onExecute, onCanExecute);
 		}
+
+		public static IAsyncCommandSlim Create(Func<ValueTask> onExecute)
+		{
+			return new AsyncRelayCommandSlim(onExecute);
+		}
+
+		public static IAsyncCommandSlim Create(Func<ValueTask> onExecute, Func<bool> onCanExecute)
+		{
+			return new AsyncRelayCommandSlim(onExecute, onCanExecute);
+		}
+
+		public static IAsyncCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute)
+		{
+			return new AsyncRelayCommandSlim<T>(onExecute);
+		}
+
+		public static IAsyncCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute, Predicate<T> onCanExecute)
+		{
+			return new AsyncRelayCommandSlim<T>(onExecute, onCanExecute);
+		}
 	}
 }

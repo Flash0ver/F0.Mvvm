@@ -37,9 +37,18 @@
 			<Separator />
 
 			<StackPanel Orientation="Vertical">
-				<Button Content="Fetch Repository Info" Command="{Binding Path=ReadGitHubCommand}" />
+				<Button Content="Fetch Repository Info" Command="{Binding Path=ReadGitHubRepoCommand}" />
 				<ScrollViewer Height="240">
 					<TextBox IsReadOnly="True" Text="{Binding Path=RepoInfo}" />
+				</ScrollViewer>
+			</StackPanel>
+
+			<Separator />
+
+			<StackPanel Orientation="Vertical">
+				<Button Content="Fetch User Info" Command="{Binding Path=ReadGitHubUserCommand}" />
+				<ScrollViewer Height="240">
+					<TextBox IsReadOnly="True" Text="{Binding Path=UserInfo}" />
 				</ScrollViewer>
 			</StackPanel>
 		</StackPanel>

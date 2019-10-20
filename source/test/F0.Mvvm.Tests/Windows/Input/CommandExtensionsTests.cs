@@ -39,6 +39,22 @@ namespace F0.Tests.Windows.Input
 		}
 
 		[Fact]
+		public async Task ExecuteTheCommandOnlyIfTheCommandCanBeExecuted_ReturnTrueIfTheCommandWasExecuted_OtherwiseFalse_IAsyncCommandSlim()
+		{
+			int executeCount = 0;
+			var command = new AsyncTestCommandSlim(() => { }, async () => { await Task.Yield(); executeCount++; });
+
+			Assert.True(command.CanExecute());
+			Assert.True(await command.TryExecuteAsync());
+			Assert.Equal(1, executeCount);
+
+			command.IsEnabled = false;
+			Assert.False(command.CanExecute());
+			Assert.False(await command.TryExecuteAsync());
+			Assert.Equal(1, executeCount);
+		}
+
+		[Fact]
 		public void Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IInputCommand()
 		{
 			int executeCount = 0;
@@ -59,6 +75,22 @@ namespace F0.Tests.Windows.Input
 		{
 			int executeCount = 0;
 			var command = new AsyncTestCommand<int>(_ => { }, async integer => { await Task.Yield(); executeCount += integer; });
+
+			Assert.True(command.CanExecute(9));
+			Assert.True(await command.TryExecuteAsync(9));
+			Assert.Equal(9, executeCount);
+
+			command.IsEnabled = false;
+			Assert.False(command.CanExecute(9));
+			Assert.False(await command.TryExecuteAsync(9));
+			Assert.Equal(9, executeCount);
+		}
+
+		[Fact]
+		public async Task Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IAsyncCommandSlim()
+		{
+			int executeCount = 0;
+			var command = new AsyncTestCommandSlim<int>(_ => { }, async integer => { await Task.Yield(); executeCount += integer; });
 
 			Assert.True(command.CanExecute(9));
 			Assert.True(await command.TryExecuteAsync(9));

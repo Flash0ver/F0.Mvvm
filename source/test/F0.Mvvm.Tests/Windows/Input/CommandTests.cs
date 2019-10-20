@@ -39,7 +39,7 @@ namespace F0.Tests.Windows.Input
 		}
 
 		[Fact]
-		public void Create_Asynchronous_NoCommandParameter_DefaultState()
+		public void Create_Asynchronous_Reference_NoCommandParameter_DefaultState()
 		{
 			IAsyncCommand command = Command.Create(() => Task.CompletedTask);
 			Assert.IsType<AsyncRelayCommand>(command);
@@ -47,7 +47,7 @@ namespace F0.Tests.Windows.Input
 		}
 
 		[Fact]
-		public void Create_Asynchronous_NoCommandParameter_MutableState()
+		public void Create_Asynchronous_Reference_NoCommandParameter_MutableState()
 		{
 			IAsyncCommand command = Command.Create(() => Task.CompletedTask, () => false);
 			Assert.IsType<AsyncRelayCommand>(command);
@@ -55,7 +55,7 @@ namespace F0.Tests.Windows.Input
 		}
 
 		[Fact]
-		public void Create_Asynchronous_StronglyTypedCommandParameter_DefaultState()
+		public void Create_Asynchronous_Reference_StronglyTypedCommandParameter_DefaultState()
 		{
 			IAsyncCommand<int> command = Command.Create<int>(_ => Task.CompletedTask);
 			Assert.IsType<AsyncRelayCommand<int>>(command);
@@ -63,10 +63,42 @@ namespace F0.Tests.Windows.Input
 		}
 
 		[Fact]
-		public void Create_Asynchronous_StronglyTypedCommandParameter_MutableState()
+		public void Create_Asynchronous_Reference_StronglyTypedCommandParameter_MutableState()
 		{
 			IAsyncCommand<int> command = Command.Create<int>(_ => Task.CompletedTask, _ => false);
 			Assert.IsType<AsyncRelayCommand<int>>(command);
+			Assert.False(command.CanExecute(240));
+		}
+
+		[Fact]
+		public void Create_Asynchronous_Value_NoCommandParameter_DefaultState()
+		{
+			IAsyncCommandSlim command = Command.Create(() => new ValueTask());
+			Assert.IsType<AsyncRelayCommandSlim>(command);
+			Assert.True(command.CanExecute());
+		}
+
+		[Fact]
+		public void Create_Asynchronous_Value_NoCommandParameter_MutableState()
+		{
+			IAsyncCommandSlim command = Command.Create(() => new ValueTask(), () => false);
+			Assert.IsType<AsyncRelayCommandSlim>(command);
+			Assert.False(command.CanExecute());
+		}
+
+		[Fact]
+		public void Create_Asynchronous_Value_StronglyTypedCommandParameter_DefaultState()
+		{
+			IAsyncCommandSlim<int> command = Command.Create<int>(_ => new ValueTask());
+			Assert.IsType<AsyncRelayCommandSlim<int>>(command);
+			Assert.True(command.CanExecute(240));
+		}
+
+		[Fact]
+		public void Create_Asynchronous_Value_StronglyTypedCommandParameter_MutableState()
+		{
+			IAsyncCommandSlim<int> command = Command.Create<int>(_ => new ValueTask(), _ => false);
+			Assert.IsType<AsyncRelayCommandSlim<int>>(command);
 			Assert.False(command.CanExecute(240));
 		}
 	}
