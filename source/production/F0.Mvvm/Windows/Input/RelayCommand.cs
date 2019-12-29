@@ -20,7 +20,7 @@ namespace F0.Windows.Input
 
 		protected override bool OnCanExecute()
 		{
-			return onCanExecute == null || onCanExecute();
+			return onCanExecute is null || onCanExecute();
 		}
 
 		protected override void OnExecute()
@@ -47,7 +47,7 @@ namespace F0.Windows.Input
 
 		protected override bool OnCanExecute(T parameter)
 		{
-			return onCanExecute == null || onCanExecute(parameter);
+			return onCanExecute is null || onCanExecute(parameter);
 		}
 
 		protected override void OnExecute(T parameter)

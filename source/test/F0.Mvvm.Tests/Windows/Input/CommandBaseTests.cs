@@ -90,7 +90,7 @@ namespace F0.Tests.Windows.Input
 			CheckThatTheWeaklyTypedCommandMethodsAreObsolete(typeof(IInputCommand));
 			CheckThatTheWeaklyTypedCommandMethodsAreObsolete(typeof(IInputCommand<>));
 
-			void CheckThatTheWeaklyTypedCommandMethodsAreObsolete(Type type)
+			static void CheckThatTheWeaklyTypedCommandMethodsAreObsolete(Type type)
 			{
 				MethodInfo canExecute = type.GetMethod(nameof(ICommand.CanExecute), new Type[] { typeof(object) });
 				MethodInfo execute = type.GetMethod(nameof(ICommand.Execute), new Type[] { typeof(object) });
@@ -102,7 +102,7 @@ namespace F0.Tests.Windows.Input
 				CheckThatMethodIsObsoleteWithError(execute);
 			}
 
-			void CheckThatMethodIsObsoleteWithError(MethodInfo methodInfo)
+			static void CheckThatMethodIsObsoleteWithError(MethodInfo methodInfo)
 			{
 				ObsoleteAttribute attribute = methodInfo.GetCustomAttribute<ObsoleteAttribute>();
 

@@ -64,7 +64,7 @@ namespace F0.Windows.Input
 
 		public bool CanExecute(T parameter)
 		{
-			if (parameter == null)
+			if (parameter is null)
 			{
 				throw new ArgumentNullException(nameof(parameter));
 			}
@@ -79,7 +79,7 @@ namespace F0.Windows.Input
 
 		public void Execute(T parameter)
 		{
-			if (parameter == null)
+			if (parameter is null)
 			{
 				throw new ArgumentNullException(nameof(parameter));
 			}
