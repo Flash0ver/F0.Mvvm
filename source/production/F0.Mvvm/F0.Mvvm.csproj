@@ -10,7 +10,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageId>F0.Mvvm</PackageId>
-    <Version>0.5.0</Version>
+    <Version>0.6.0</Version>
     <Authors>Flash0ver</Authors>
     <Company>f[0]</Company>
     <Product>F0.Mvvm</Product>
@@ -22,7 +22,7 @@
     <RepositoryUrl>https://github.com/Flash0ver/F0.Mvvm.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>f[0] f0 mvvm xaml</PackageTags>
-    <PackageReleaseNotes>Added both parameterless and strongly typed abstractions and implementations of an allocation-free asynchronous System.Windows.Input.ICommand.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added target framework: .NET Standard 2.1.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
