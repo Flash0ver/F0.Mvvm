@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using F0.Windows.Input;
 
-namespace F0.Tests.Windows.Input
+namespace F0.Tests.Shared
 {
-	internal sealed class TestCommand : CommandBase
+	internal sealed class AsyncTestCommand : AsyncCommandBase
 	{
 		private readonly Action onCanExecute;
-		private readonly Action onExecute;
+		private readonly Func<Task> onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled
@@ -22,12 +23,12 @@ namespace F0.Tests.Windows.Input
 			}
 		}
 
-		internal TestCommand()
+		internal AsyncTestCommand()
 		{
 			isEnabled = true;
 		}
 
-		internal TestCommand(Action onCanExecute, Action onExecute)
+		internal AsyncTestCommand(Action onCanExecute, Func<Task> onExecute)
 			: this()
 		{
 			this.onCanExecute = onCanExecute;
@@ -40,16 +41,16 @@ namespace F0.Tests.Windows.Input
 			return IsEnabled;
 		}
 
-		protected override void OnExecute()
+		protected override Task OnExecuteAsync()
 		{
-			onExecute?.Invoke();
+			return onExecute?.Invoke() ?? Task.CompletedTask;
 		}
 	}
 
-	internal sealed class TestCommand<T> : CommandBase<T>
+	internal sealed class AsyncTestCommand<T> : AsyncCommandBase<T>
 	{
 		private readonly Action<T> onCanExecute;
-		private readonly Action<T> onExecute;
+		private readonly Func<T, Task> onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled
@@ -65,12 +66,12 @@ namespace F0.Tests.Windows.Input
 			}
 		}
 
-		internal TestCommand()
+		internal AsyncTestCommand()
 		{
 			isEnabled = true;
 		}
 
-		internal TestCommand(Action<T> onCanExecute, Action<T> onExecute)
+		internal AsyncTestCommand(Action<T> onCanExecute, Func<T, Task> onExecute)
 			: this()
 		{
 			this.onCanExecute = onCanExecute;
@@ -83,9 +84,9 @@ namespace F0.Tests.Windows.Input
 			return IsEnabled;
 		}
 
-		protected override void OnExecute(T parameter)
+		protected override Task OnExecuteAsync(T parameter)
 		{
-			onExecute?.Invoke(parameter);
+			return onExecute?.Invoke(parameter) ?? Task.CompletedTask;
 		}
 	}
 }

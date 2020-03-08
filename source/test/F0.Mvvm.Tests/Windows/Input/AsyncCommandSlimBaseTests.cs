@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using F0.Tests.Shared;
 using F0.Windows.Input;
 using Xunit;
 

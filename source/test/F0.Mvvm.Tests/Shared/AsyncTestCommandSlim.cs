@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using F0.Windows.Input;
 
-namespace F0.Tests.Windows.Input
+namespace F0.Tests.Shared
 {
 	internal sealed class AsyncTestCommandSlim : AsyncCommandSlimBase
 	{

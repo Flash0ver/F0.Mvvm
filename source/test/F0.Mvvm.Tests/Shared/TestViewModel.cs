@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using F0.ComponentModel;
 
-namespace F0.Tests.ComponentModel
+namespace F0.Tests.Shared
 {
 	internal sealed class TestViewModel : ViewModel
 	{

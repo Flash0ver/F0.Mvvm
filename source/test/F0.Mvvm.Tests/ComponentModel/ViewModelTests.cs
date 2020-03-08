@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using F0.Tests.Shared;
 using Xunit;
 
 namespace F0.Tests.ComponentModel
