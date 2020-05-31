@@ -11,3 +11,7 @@ This repo contains .NET Class Libraries for implementing XAML applications using
 [DotNetApis](http://dotnetapis.com/pkg/F0.Mvvm)\
 [NuGet Must Haves](https://nugetmusthaves.com/Package/F0.Mvvm)\
 [NuGet Trends](https://nugettrends.com/packages?months=12&ids=F0.Mvvm)
+
+## Other external links
+[Libraries.io Packages](https://libraries.io/nuget/F0.Mvvm)\
+[Libraries.io Repositories](https://libraries.io/github/Flash0ver/F0.Mvvm)
