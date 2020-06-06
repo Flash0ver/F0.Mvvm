@@ -1,6 +1,8 @@
 # F0.Mvvm
 This repo contains .NET Class Libraries for implementing XAML applications using the MVVM pattern.
 
+![F0.Mvvm](https://raw.githubusercontent.com/Flash0ver/F0/master/Branding/GitHub/F0.Mvvm.png)
+
 [![F0.Mvvm on fuget.org](https://www.fuget.org/packages/F0.Mvvm/badge.svg)](https://www.fuget.org/packages/F0.Mvvm)
 
 ## NuGet
