@@ -78,7 +78,7 @@ namespace F0.Mvvm.Example.Windows.Input
 			string text = $"Repository: {repository.FullName} ({repository.HtmlUrl})\n";
 			text += $"* Name: {repository.Name}\n";
 			text += $"* Owner: {repository.Owner.Login} ({user.Followers} followers)\n";
-			text += $"* {repository.SubscribersCount} watchers\n";
+			text += $"* {repository.WatchersCount} watchers\n";
 			text += $"* {repository.StargazersCount} Stargazers\n";
 			text += $"* {repository.ForksCount} forks\n";
 			text += $"* {repository.Description}\n";
