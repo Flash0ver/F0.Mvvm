@@ -81,5 +81,57 @@ namespace F0.Windows.Input
 				return false;
 			}
 		}
+
+		public static async Task<bool> TryExecuteAsync(this IBoundedCommand command)
+		{
+			if (command.CanExecute())
+			{
+				await command.ExecuteAsync();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public static async Task<bool> TryExecuteAsync<T>(this IBoundedCommand<T> command, T parameter)
+		{
+			if (command.CanExecute(parameter))
+			{
+				await command.ExecuteAsync(parameter);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public static async ValueTask<bool> TryExecuteAsync(this IBoundedCommandSlim command)
+		{
+			if (command.CanExecute())
+			{
+				await command.ExecuteAsync();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public static async ValueTask<bool> TryExecuteAsync<T>(this IBoundedCommandSlim<T> command, T parameter)
+		{
+			if (command.CanExecute(parameter))
+			{
+				await command.ExecuteAsync(parameter);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 	}
 }

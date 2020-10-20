@@ -101,5 +101,77 @@ namespace F0.Tests.Windows.Input
 			Assert.IsType<AsyncRelayCommandSlim<int>>(command);
 			Assert.False(command.CanExecute(240));
 		}
+
+		[Fact]
+		public void Create_Bounded_Reference_NoCommandParameter_DefaultState()
+		{
+			IBoundedCommand command = Command.Create(() => Task.CompletedTask, 1);
+			Assert.IsType<BoundedRelayCommand>(command);
+			Assert.True(command.CanExecute());
+			Assert.Equal(1, command.MaxCount);
+		}
+
+		[Fact]
+		public void Create_Bounded_Reference_NoCommandParameter_MutableState()
+		{
+			IBoundedCommand command = Command.Create(() => Task.CompletedTask, () => false, 1);
+			Assert.IsType<BoundedRelayCommand>(command);
+			Assert.False(command.CanExecute());
+			Assert.Equal(1, command.MaxCount);
+		}
+
+		[Fact]
+		public void Create_Bounded_Reference_StronglyTypedCommandParameter_DefaultState()
+		{
+			IBoundedCommand<int> command = Command.Create<int>(_ => Task.CompletedTask, 1);
+			Assert.IsType<BoundedRelayCommand<int>>(command);
+			Assert.True(command.CanExecute(240));
+			Assert.Equal(1, command.MaxCount);
+		}
+
+		[Fact]
+		public void Create_Bounded_Reference_StronglyTypedCommandParameter_MutableState()
+		{
+			IBoundedCommand<int> command = Command.Create<int>(_ => Task.CompletedTask, _ => false, 1);
+			Assert.IsType<BoundedRelayCommand<int>>(command);
+			Assert.False(command.CanExecute(240));
+			Assert.Equal(1, command.MaxCount);
+		}
+
+		[Fact]
+		public void Create_Bounded_Value_NoCommandParameter_DefaultState()
+		{
+			IBoundedCommandSlim command = Command.Create(() => new ValueTask(), 1);
+			Assert.IsType<BoundedRelayCommandSlim>(command);
+			Assert.True(command.CanExecute());
+			Assert.Equal(1, command.MaxCount);
+		}
+
+		[Fact]
+		public void Create_Bounded_Value_NoCommandParameter_MutableState()
+		{
+			IBoundedCommandSlim command = Command.Create(() => new ValueTask(), () => false, 1);
+			Assert.IsType<BoundedRelayCommandSlim>(command);
+			Assert.False(command.CanExecute());
+			Assert.Equal(1, command.MaxCount);
+		}
+
+		[Fact]
+		public void Create_Bounded_Value_StronglyTypedCommandParameter_DefaultState()
+		{
+			IBoundedCommandSlim<int> command = Command.Create<int>(_ => new ValueTask(), 1);
+			Assert.IsType<BoundedRelayCommandSlim<int>>(command);
+			Assert.True(command.CanExecute(240));
+			Assert.Equal(1, command.MaxCount);
+		}
+
+		[Fact]
+		public void Create_Bounded_Value_StronglyTypedCommandParameter_MutableState()
+		{
+			IBoundedCommandSlim<int> command = Command.Create<int>(_ => new ValueTask(), _ => false, 1);
+			Assert.IsType<BoundedRelayCommandSlim<int>>(command);
+			Assert.False(command.CanExecute(240));
+			Assert.Equal(1, command.MaxCount);
+		}
 	}
 }

@@ -56,6 +56,40 @@ namespace F0.Tests.Windows.Input
 		}
 
 		[Fact]
+		public async Task ExecuteTheCommandOnlyIfTheCommandCanBeExecuted_ReturnTrueIfTheCommandWasExecuted_OtherwiseFalse_IBoundedCommand()
+		{
+			int executeCount = 0;
+			bool isEnabled = true;
+			IBoundedCommand command = new BoundedRelayCommand(async () => { await Task.Yield(); executeCount++; }, () => isEnabled);
+
+			Assert.True(command.CanExecute());
+			Assert.True(await command.TryExecuteAsync());
+			Assert.Equal(1, executeCount);
+
+			isEnabled = false;
+			Assert.False(command.CanExecute());
+			Assert.False(await command.TryExecuteAsync());
+			Assert.Equal(1, executeCount);
+		}
+
+		[Fact]
+		public async Task ExecuteTheCommandOnlyIfTheCommandCanBeExecuted_ReturnTrueIfTheCommandWasExecuted_OtherwiseFalse_IBoundedCommandSlim()
+		{
+			int executeCount = 0;
+			bool isEnabled = true;
+			IBoundedCommandSlim command = new BoundedRelayCommandSlim(async () => { await Task.Yield(); executeCount++; }, () => isEnabled);
+
+			Assert.True(command.CanExecute());
+			Assert.True(await command.TryExecuteAsync());
+			Assert.Equal(1, executeCount);
+
+			isEnabled = false;
+			Assert.False(command.CanExecute());
+			Assert.False(await command.TryExecuteAsync());
+			Assert.Equal(1, executeCount);
+		}
+
+		[Fact]
 		public void Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IInputCommand()
 		{
 			int executeCount = 0;
@@ -98,6 +132,40 @@ namespace F0.Tests.Windows.Input
 			Assert.Equal(9, executeCount);
 
 			command.IsEnabled = false;
+			Assert.False(command.CanExecute(9));
+			Assert.False(await command.TryExecuteAsync(9));
+			Assert.Equal(9, executeCount);
+		}
+
+		[Fact]
+		public async Task Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IBoundedCommand()
+		{
+			int executeCount = 0;
+			bool isEnabled = true;
+			IBoundedCommand<int> command = new BoundedRelayCommand<int>(async integer => { await Task.Yield(); executeCount += integer; }, _ => isEnabled);
+
+			Assert.True(command.CanExecute(9));
+			Assert.True(await command.TryExecuteAsync(9));
+			Assert.Equal(9, executeCount);
+
+			isEnabled = false;
+			Assert.False(command.CanExecute(9));
+			Assert.False(await command.TryExecuteAsync(9));
+			Assert.Equal(9, executeCount);
+		}
+
+		[Fact]
+		public async Task Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IBoundedCommandSlim()
+		{
+			int executeCount = 0;
+			bool isEnabled = true;
+			IBoundedCommandSlim<int> command = new BoundedRelayCommandSlim<int>(async integer => { await Task.Yield(); executeCount += integer; }, _ => isEnabled);
+
+			Assert.True(command.CanExecute(9));
+			Assert.True(await command.TryExecuteAsync(9));
+			Assert.Equal(9, executeCount);
+
+			isEnabled = false;
 			Assert.False(command.CanExecute(9));
 			Assert.False(await command.TryExecuteAsync(9));
 			Assert.Equal(9, executeCount);

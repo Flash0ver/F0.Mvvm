@@ -51,6 +51,42 @@
 					<TextBox IsReadOnly="True" Text="{Binding Path=UserInfo}" />
 				</ScrollViewer>
 			</StackPanel>
+
+			<Separator />
+
+			<Button Command="{Binding Path=BeginOperationCommand}">
+				<Button.Content>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Begin Operation (" />
+						<TextBlock Text="{Binding Path=BeginOperationCommand.CurrentCount}" />
+						<TextBlock Text="/" />
+						<TextBlock Text="{Binding Path=BeginOperationCommand.MaxCount}" />
+						<TextBlock Text=")" />
+					</StackPanel>
+				</Button.Content>
+			</Button>
+			<ItemsControl
+				ItemsSource="{Binding Path=Operations}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Vertical" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Grid>
+							<ProgressBar
+								Height="20"
+								Minimum="0" Maximum="100"
+								Value="{Binding Path=Progress}" />
+							<TextBlock
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Text="{Binding Path=Progress, StringFormat={}{0:000} %}" />
+						</Grid>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
 		</StackPanel>
 	</Grid>
 </Window>

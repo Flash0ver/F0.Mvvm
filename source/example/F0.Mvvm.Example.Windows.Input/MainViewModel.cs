@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,8 @@ namespace F0.Mvvm.Example.Windows.Input
 {
 	internal class MainViewModel : ViewModel
 	{
+		private readonly IRandomService randomService;
+
 		private int number = 240;
 		public int Number
 		{
@@ -53,8 +57,14 @@ namespace F0.Mvvm.Example.Windows.Input
 		public IAsyncCommand ReadGitHubRepoCommand { get; }
 		public IAsyncCommandSlim ReadGitHubUserCommand { get; }
 
+		public IList<Operation> Operations { get; }
+
+		public IBoundedCommand BeginOperationCommand { get; }
+
 		public MainViewModel()
 		{
+			randomService = new RandomService();
+
 			IncrementCommand = Command.Create(() => Number++);
 			DecrementCommand = Command.Create(() => Number--);
 			AddCommand = Command.Create<int>(parameter => Number += parameter, parameter => parameter != 0);
@@ -62,6 +72,10 @@ namespace F0.Mvvm.Example.Windows.Input
 
 			ReadGitHubRepoCommand = Command.Create(FetchRepoInfoAsync);
 			ReadGitHubUserCommand = Command.Create(FetchUserInfoAsync);
+
+			BeginOperationCommand = Command.Create(BeginOperationAsync, 3);
+
+			Operations = new ObservableCollection<Operation>();
 		}
 
 		private async Task FetchRepoInfoAsync()
@@ -118,6 +132,18 @@ namespace F0.Mvvm.Example.Windows.Input
 			text += $"* Following {user.Following} users\n";
 
 			UserInfo = text;
+		}
+
+		private async Task BeginOperationAsync()
+		{
+			var operation = new Operation(randomService);
+
+			Operations.Add(operation);
+
+			await operation.ExecuteAsync();
+
+			bool wasRemoved = Operations.Remove(operation);
+			Debug.Assert(wasRemoved);
 		}
 	}
 }
