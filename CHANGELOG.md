@@ -2,10 +2,13 @@
 CHANGELOG
 
 ## vNext
+
+## v0.7.0 (2020-10-21)
 - Added implementation of `Windows.Input.IBoundedCommand`, a parameterless and asynchronous `System.Windows.Input.ICommand` abstraction, which limits the number of concurrent operations executing.
 - Added implementation of `Windows.Input.IBoundedCommand<T>`, a strongly typed and asynchronous `System.Windows.Input.ICommand` abstraction, which limits the number of concurrent operations executing.
 - Added implementation of `Windows.Input.IBoundedCommandSlim`, a parameterless and allocation-free asynchronous `System.Windows.Input.ICommand` abstraction, which limits the number of concurrent operations executing.
 - Added implementation of `Windows.Input.IBoundedCommandSlim<T>`, a strongly typed and allocation-free asynchronous `System.Windows.Input.ICommand` abstraction, which limits the number of concurrent operations executing.
+- Updated `.NET Standard 2.0` dependency on `System.Threading.Tasks.Extensions` from `4.5.3` to `4.5.4`.
 
 ## v0.6.0 (2019-12-31)
 - Added target framework: `.NET Standard 2.1`.
