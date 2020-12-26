@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using F0.Windows.Input;
 
 namespace F0.Tests.Shared

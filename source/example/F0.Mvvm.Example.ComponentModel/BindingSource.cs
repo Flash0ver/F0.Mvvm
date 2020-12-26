@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using F0.ComponentModel;
 
 namespace F0.Mvvm.Example.ComponentModel

@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using F0.ComponentModel;
 
 namespace F0.Mvvm.Example.Windows.Input

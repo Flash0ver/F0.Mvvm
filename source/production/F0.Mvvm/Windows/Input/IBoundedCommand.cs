@@ -1,4 +1,4 @@
-﻿namespace F0.Windows.Input
+namespace F0.Windows.Input
 {
 	public interface IBoundedCommand : IAsyncCommand
 	{
