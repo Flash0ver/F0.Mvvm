@@ -2,6 +2,7 @@
 CHANGELOG
 
 ## vNext
+- Package: Embed icon (fixed _NuGet Warning NU5048_), keep fallback icon URL.
 
 ## v0.7.0 (2020-10-21)
 - Added implementation of `Windows.Input.IBoundedCommand`, a parameterless and asynchronous `System.Windows.Input.ICommand` abstraction, which limits the number of concurrent operations executing.
@@ -23,6 +24,7 @@ CHANGELOG
 
 ## v0.3.0 (2019-04-30)
 - Changed target framework from `.NET Standard 1.0` to `.NET Standard 2.0`.
+- Package: Use license expression instead of deprecated license URL (fixed _NuGet Warning NU5125_).
 
 ## v0.2.0 (2018-12-21)
 - Added implementation of `Windows.Input.IInputCommand`, a parameterless `System.Windows.Input.ICommand` abstraction.
