@@ -42,7 +42,7 @@ namespace F0.Tests.ComponentModel
 		{
 			Assert.Equal(new Tuple<int>(-1), viewModel.Property);
 
-			var value = new Tuple<int>(240);
+			Tuple<int> value = new(240);
 			viewModel.Property = value;
 			Assert.Equal(value, viewModel.Property);
 			Assert.Same(value, viewModel.Property);
@@ -55,13 +55,13 @@ namespace F0.Tests.ComponentModel
 		{
 			Assert.Equal(new Tuple<int>(-1), viewModel.Property);
 
-			var first = new Tuple<int>(-1);
+			Tuple<int> first = new(-1);
 			viewModel.Property = first;
 			Assert.Equal(first, viewModel.Property);
 			Assert.NotSame(first, viewModel.Property);
 			CheckPropertyNames();
 
-			var second = new Tuple<int>(240);
+			Tuple<int> second = new(240);
 			viewModel.Property = second;
 			Assert.Equal(second, viewModel.Property);
 			Assert.Same(second, viewModel.Property);
@@ -78,14 +78,14 @@ namespace F0.Tests.ComponentModel
 		{
 			Assert.Equal(new Tuple<int>(-2), viewModel.TryProperty);
 
-			var first = new Tuple<int>(-2);
+			Tuple<int> first = new(-2);
 			viewModel.TryProperty = first;
 			Assert.Equal(first, viewModel.TryProperty);
 			Assert.NotSame(first, viewModel.TryProperty);
 			CheckPropertyNames();
 			Assert.Empty(viewModel.GetModifications());
 
-			var second = new Tuple<int>(240);
+			Tuple<int> second = new(240);
 			viewModel.TryProperty = second;
 			Assert.Equal(second, viewModel.TryProperty);
 			Assert.Same(second, viewModel.TryProperty);
@@ -102,7 +102,7 @@ namespace F0.Tests.ComponentModel
 		[Fact]
 		public void WhenPropertyValueChanges_ThenInvokePropertyChangedEvent()
 		{
-			var value = new Tuple<int>(240);
+			Tuple<int> value = new(240);
 			viewModel.SetAutoImplementedProperty(value);
 			Assert.Equal(value, viewModel.AutoImplementedProperty);
 			Assert.Same(value, viewModel.AutoImplementedProperty);

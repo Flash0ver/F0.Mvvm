@@ -12,7 +12,7 @@ namespace F0.Windows.Input
 
 		public bool CanExecute(object parameter)
 		{
-			if (parameter is { })
+			if (parameter is not null)
 			{
 				throw new ArgumentException("CommandParameter must be null", nameof(parameter));
 			}
@@ -27,7 +27,7 @@ namespace F0.Windows.Input
 
 		public void Execute(object parameter)
 		{
-			if (parameter is { })
+			if (parameter is not null)
 			{
 				throw new ArgumentException("CommandParameter must be null", nameof(parameter));
 			}

@@ -144,7 +144,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void AsyncCommandSlimBase_StateOfTheCommandCanChange()
 		{
-			var command = new AsyncTestCommandSlim();
+			AsyncTestCommandSlim command = new();
 
 			Assert.True(command.IsEnabled);
 			Assert.True(command.CanExecute());
@@ -156,7 +156,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void AsyncCommandSlimBase_T_StateOfTheCommandCanChange()
 		{
-			var command = new AsyncTestCommandSlim<string>();
+			AsyncTestCommandSlim<string> command = new();
 
 			Assert.True(command.IsEnabled);
 			Assert.True(command.CanExecute("F0"));

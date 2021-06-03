@@ -127,8 +127,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task TheCommandCannotBeExecutedIfTheCurrentCountOfOperationsExceedTheMaximumCount()
 		{
-			var tcs = new TaskCompletionSource<object>();
-			var tcsT = new TaskCompletionSource<object>();
+			TaskCompletionSource<object> tcs = new();
+			TaskCompletionSource<object> tcsT = new();
 
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task, 1);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task, 1);
@@ -187,8 +187,8 @@ namespace F0.Tests.Windows.Input
 		{
 			int number = 0;
 			int numberT = 0;
-			var tcs = new TaskCompletionSource<object>();
-			var tcsT = new TaskCompletionSource<object>();
+			TaskCompletionSource<object> tcs = new();
+			TaskCompletionSource<object> tcsT = new();
 			IBoundedCommand command = new BoundedRelayCommand(() => { number++; return tcs.Task; }, 1);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => { numberT++; return tcsT.Task; }, 1);
 
@@ -237,8 +237,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task WhenInvokedOperationIsCanceled_ThenCurrentCountIsStillDecrementedAndExceptionIsThrown()
 		{
-			var tcs = new TaskCompletionSource<object>();
-			var tcsT = new TaskCompletionSource<object>();
+			TaskCompletionSource<object> tcs = new();
+			TaskCompletionSource<object> tcsT = new();
 
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task);
@@ -264,8 +264,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task WhenInvokedOperationIsFaulted_ThenCurrentCountIsStillDecrementedAndExceptionIsThrown()
 		{
-			var tcs = new TaskCompletionSource<object>();
-			var tcsT = new TaskCompletionSource<object>();
+			TaskCompletionSource<object> tcs = new();
+			TaskCompletionSource<object> tcsT = new();
 
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task);
@@ -291,17 +291,17 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task NotifyClientsThatCurrentCountHasChanged()
 		{
-			var tcs = new TaskCompletionSource<object>();
-			var tcsT = new TaskCompletionSource<object>();
+			TaskCompletionSource<object> tcs = new();
+			TaskCompletionSource<object> tcsT = new();
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task);
 
-			var senders = new List<object>();
-			var sendersT = new List<object>();
-			var propertyNames = new List<string>();
-			var propertyNamesT = new List<string>();
-			var counts = new List<int>();
-			var countsT = new List<int>();
+			List<object> senders = new();
+			List<object> sendersT = new();
+			List<string> propertyNames = new();
+			List<string> propertyNamesT = new();
+			List<int> counts = new();
+			List<int> countsT = new();
 
 			void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
 			{
@@ -394,17 +394,17 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task RaiseCanExecuteChangedEvent()
 		{
-			var tcs = new TaskCompletionSource<object>();
-			var tcsT = new TaskCompletionSource<object>();
+			TaskCompletionSource<object> tcs = new();
+			TaskCompletionSource<object> tcsT = new();
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task, 1);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task, 1);
 
-			var senders = new List<object>();
-			var sendersT = new List<object>();
-			var eventArgs = new List<EventArgs>();
-			var eventArgsT = new List<EventArgs>();
-			var canExecute = new List<bool>();
-			var canExecuteT = new List<bool>();
+			List<object> senders = new();
+			List<object> sendersT = new();
+			List<EventArgs> eventArgs = new();
+			List<EventArgs> eventArgsT = new();
+			List<bool> canExecute = new();
+			List<bool> canExecuteT = new();
 
 			void OnCanExecuteChanged(object sender, EventArgs e)
 			{
@@ -461,17 +461,17 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task RaiseCanExecuteChangedEvent_WhenChangesToTheCurrentCountOccurThatAffectWhetherOrNotTheCommandShouldExecute()
 		{
-			var tcs = new TaskCompletionSource<object>();
-			var tcsT = new TaskCompletionSource<object>();
+			TaskCompletionSource<object> tcs = new();
+			TaskCompletionSource<object> tcsT = new();
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task, 2);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task, 2);
 
-			var senders = new List<object>();
-			var sendersT = new List<object>();
-			var eventArgs = new List<EventArgs>();
-			var eventArgsT = new List<EventArgs>();
-			var canExecute = new List<bool>();
-			var canExecuteT = new List<bool>();
+			List<object> senders = new();
+			List<object> sendersT = new();
+			List<EventArgs> eventArgs = new();
+			List<EventArgs> eventArgsT = new();
+			List<bool> canExecute = new();
+			List<bool> canExecuteT = new();
 
 			void OnCanExecuteChanged(object sender, EventArgs e)
 			{

@@ -13,7 +13,7 @@ namespace F0.Windows.Input
 
 		public bool CanExecute(object parameter)
 		{
-			if (parameter is { })
+			if (parameter is not null)
 			{
 				throw new ArgumentException("CommandParameter must be null", nameof(parameter));
 			}
@@ -43,7 +43,7 @@ namespace F0.Windows.Input
 
 		internal async Task InternalExecuteAsync(object parameter)
 		{
-			if (parameter is { })
+			if (parameter is not null)
 			{
 				throw new ArgumentException("CommandParameter must be null", nameof(parameter));
 			}

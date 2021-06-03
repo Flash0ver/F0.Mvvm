@@ -143,7 +143,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_StateOfTheCommandCanChange()
 		{
-			var command = new TestCommand();
+			TestCommand command = new();
 
 			Assert.True(command.IsEnabled);
 			Assert.True(command.CanExecute());
@@ -155,7 +155,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_T_StateOfTheCommandCanChange()
 		{
-			var command = new TestCommand<string>();
+			TestCommand<string> command = new();
 
 			Assert.True(command.IsEnabled);
 			Assert.True(command.CanExecute("F0"));

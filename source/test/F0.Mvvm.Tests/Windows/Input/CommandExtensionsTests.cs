@@ -11,7 +11,7 @@ namespace F0.Tests.Windows.Input
 		public void ExecuteTheCommandOnlyIfTheCommandCanBeExecuted_ReturnTrueIfTheCommandWasExecuted_OtherwiseFalse_IInputCommand()
 		{
 			int executeCount = 0;
-			var command = new TestCommand(() => { }, () => executeCount++);
+			TestCommand command = new(() => { }, () => executeCount++);
 
 			Assert.True(command.CanExecute());
 			Assert.True(command.TryExecute());
@@ -27,7 +27,7 @@ namespace F0.Tests.Windows.Input
 		public async Task ExecuteTheCommandOnlyIfTheCommandCanBeExecuted_ReturnTrueIfTheCommandWasExecuted_OtherwiseFalse_IAsyncCommand()
 		{
 			int executeCount = 0;
-			var command = new AsyncTestCommand(() => { }, async () => { await Task.Yield(); executeCount++; });
+			AsyncTestCommand command = new(() => { }, async () => { await Task.Yield(); executeCount++; });
 
 			Assert.True(command.CanExecute());
 			Assert.True(await command.TryExecuteAsync());
@@ -43,7 +43,7 @@ namespace F0.Tests.Windows.Input
 		public async Task ExecuteTheCommandOnlyIfTheCommandCanBeExecuted_ReturnTrueIfTheCommandWasExecuted_OtherwiseFalse_IAsyncCommandSlim()
 		{
 			int executeCount = 0;
-			var command = new AsyncTestCommandSlim(() => { }, async () => { await Task.Yield(); executeCount++; });
+			AsyncTestCommandSlim command = new(() => { }, async () => { await Task.Yield(); executeCount++; });
 
 			Assert.True(command.CanExecute());
 			Assert.True(await command.TryExecuteAsync());
@@ -93,7 +93,7 @@ namespace F0.Tests.Windows.Input
 		public void Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IInputCommand()
 		{
 			int executeCount = 0;
-			var command = new TestCommand<int>(_ => { }, integer => executeCount += integer);
+			TestCommand<int> command = new(_ => { }, integer => executeCount += integer);
 
 			Assert.True(command.CanExecute(9));
 			Assert.True(command.TryExecute(9));
@@ -109,7 +109,7 @@ namespace F0.Tests.Windows.Input
 		public async Task Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IAsyncCommand()
 		{
 			int executeCount = 0;
-			var command = new AsyncTestCommand<int>(_ => { }, async integer => { await Task.Yield(); executeCount += integer; });
+			AsyncTestCommand<int> command = new(_ => { }, async integer => { await Task.Yield(); executeCount += integer; });
 
 			Assert.True(command.CanExecute(9));
 			Assert.True(await command.TryExecuteAsync(9));
@@ -125,7 +125,7 @@ namespace F0.Tests.Windows.Input
 		public async Task Return_TrueIfTheCommandHasBeenExecuted_FalseIfTheCommandHasNotBeenExecuted_IAsyncCommandSlim()
 		{
 			int executeCount = 0;
-			var command = new AsyncTestCommandSlim<int>(_ => { }, async integer => { await Task.Yield(); executeCount += integer; });
+			AsyncTestCommandSlim<int> command = new(_ => { }, async integer => { await Task.Yield(); executeCount += integer; });
 
 			Assert.True(command.CanExecute(9));
 			Assert.True(await command.TryExecuteAsync(9));

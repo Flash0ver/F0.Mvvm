@@ -20,11 +20,11 @@ namespace F0.Mvvm.Example.ComponentModel
 		{
 			TimeIntervalComponents = new ObservableCollection<BindingSource<int, TimeSpan>>()
 			{
-				new BindingSource<int, TimeSpan>("Milliseconds", time => time.Milliseconds),
-				new BindingSource<int, TimeSpan>("Seconds", time => time.Seconds),
-				new BindingSource<int, TimeSpan>("Minutes", time => time.Minutes),
-				new BindingSource<int, TimeSpan>("Hours", time => time.Hours),
-				new BindingSource<int, TimeSpan>("Days", time => time.Days)
+				new BindingSource<int, TimeSpan>("Milliseconds", static time => time.Milliseconds),
+				new BindingSource<int, TimeSpan>("Seconds", static time => time.Seconds),
+				new BindingSource<int, TimeSpan>("Minutes", static time => time.Minutes),
+				new BindingSource<int, TimeSpan>("Hours", static time => time.Hours),
+				new BindingSource<int, TimeSpan>("Days", static time => time.Days)
 			};
 			stopwatch = Stopwatch.StartNew();
 			timer = new Timer(OnTimerCallback, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(1));

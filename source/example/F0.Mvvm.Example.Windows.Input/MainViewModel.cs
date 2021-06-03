@@ -83,7 +83,7 @@ namespace F0.Mvvm.Example.Windows.Input
 			const string owner = "Flash0ver";
 			const string reponame = "F0.Mvvm";
 
-			var client = new GitHubClient(new ProductHeaderValue("F0.Mvvm.Example"));
+			GitHubClient client = new(new ProductHeaderValue("F0.Mvvm.Example"));
 
 			User user = await client.User.Get(owner);
 			Repository repository = await client.Repository.Get(owner, reponame);
@@ -102,8 +102,8 @@ namespace F0.Mvvm.Example.Windows.Input
 			text += $"* License: {repository.License.SpdxId}\n";
 
 			text += "\n";
-			var builder = new StringBuilder($"{releases.Count} Releases\n");
-			foreach (Release release in releases.Where(r => !r.Draft))
+			StringBuilder builder = new($"{releases.Count} Releases\n");
+			foreach (Release release in releases.Where(static r => !r.Draft))
 			{
 				builder.Append($"- {release.Name} ({release.TagName})\n");
 				builder.Append($"\t{release.Body}\n");
@@ -119,7 +119,7 @@ namespace F0.Mvvm.Example.Windows.Input
 		{
 			const string owner = "Flash0ver";
 
-			var client = new GitHubClient(new ProductHeaderValue("F0.Mvvm.Example"));
+			GitHubClient client = new(new ProductHeaderValue("F0.Mvvm.Example"));
 
 			User user = await client.User.Get(owner);
 
@@ -136,7 +136,7 @@ namespace F0.Mvvm.Example.Windows.Input
 
 		private async Task BeginOperationAsync()
 		{
-			var operation = new Operation(randomService);
+			Operation operation = new(randomService);
 
 			Operations.Add(operation);
 

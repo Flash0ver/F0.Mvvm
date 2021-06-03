@@ -28,7 +28,7 @@ namespace F0.Tests.Shared
 
 		public Tuple<int> AutoImplementedProperty { get; private set; }
 
-		private readonly List<Tuple<int>> modifications = new List<Tuple<int>>();
+		private readonly List<Tuple<int>> modifications = new();
 
 		internal TestViewModel()
 		{
