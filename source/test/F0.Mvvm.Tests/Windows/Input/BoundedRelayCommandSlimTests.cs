@@ -127,8 +127,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task TheCommandCannotBeExecutedIfTheCurrentCountOfOperationsExceedTheMaximumCount()
 		{
-			TaskCompletionSource<object> tcs = new();
-			TaskCompletionSource<object> tcsT = new();
+			TaskCompletionSource tcs = new();
+			TaskCompletionSource tcsT = new();
 
 			IBoundedCommandSlim command = new BoundedRelayCommandSlim(() => new ValueTask(tcs.Task), 1);
 			IBoundedCommandSlim<string> commandT = new BoundedRelayCommandSlim<string>(_ => new ValueTask(tcsT.Task), 1);
@@ -146,8 +146,8 @@ namespace F0.Tests.Windows.Input
 			Assert.False(command.CanExecute());
 			Assert.False(commandT.CanExecute("F0"));
 
-			tcs.SetResult(null);
-			tcsT.SetResult(null);
+			tcs.SetResult();
+			tcsT.SetResult();
 			await operation;
 			await operationT;
 
@@ -187,8 +187,8 @@ namespace F0.Tests.Windows.Input
 		{
 			int number = 0;
 			int numberT = 0;
-			TaskCompletionSource<object> tcs = new();
-			TaskCompletionSource<object> tcsT = new();
+			TaskCompletionSource tcs = new();
+			TaskCompletionSource tcsT = new();
 			IBoundedCommandSlim command = new BoundedRelayCommandSlim(() => { number++; return new ValueTask(tcs.Task); }, 1);
 			IBoundedCommandSlim<string> commandT = new BoundedRelayCommandSlim<string>(_ => { numberT++; return new ValueTask(tcsT.Task); }, 1);
 
@@ -219,8 +219,8 @@ namespace F0.Tests.Windows.Input
 			Assert.False(command.CanExecute());
 			Assert.False(commandT.CanExecute("F0"));
 
-			tcs.SetResult(null);
-			tcsT.SetResult(null);
+			tcs.SetResult();
+			tcsT.SetResult();
 			await operationOne;
 			await operationOneT;
 			await operationTwo;
@@ -237,8 +237,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task WhenInvokedOperationIsCanceled_ThenCurrentCountIsStillDecrementedAndExceptionIsThrown()
 		{
-			TaskCompletionSource<object> tcs = new();
-			TaskCompletionSource<object> tcsT = new();
+			TaskCompletionSource tcs = new();
+			TaskCompletionSource tcsT = new();
 
 			IBoundedCommandSlim command = new BoundedRelayCommandSlim(() => new ValueTask(tcs.Task));
 			IBoundedCommandSlim<string> commandT = new BoundedRelayCommandSlim<string>(_ => new ValueTask(tcsT.Task));
@@ -264,8 +264,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task WhenInvokedOperationIsFaulted_ThenCurrentCountIsStillDecrementedAndExceptionIsThrown()
 		{
-			TaskCompletionSource<object> tcs = new();
-			TaskCompletionSource<object> tcsT = new();
+			TaskCompletionSource tcs = new();
+			TaskCompletionSource tcsT = new();
 
 			IBoundedCommandSlim command = new BoundedRelayCommandSlim(() => new ValueTask(tcs.Task));
 			IBoundedCommandSlim<string> commandT = new BoundedRelayCommandSlim<string>(_ => new ValueTask(tcsT.Task));
@@ -291,8 +291,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task NotifyClientsThatCurrentCountHasChanged()
 		{
-			TaskCompletionSource<object> tcs = new();
-			TaskCompletionSource<object> tcsT = new();
+			TaskCompletionSource tcs = new();
+			TaskCompletionSource tcsT = new();
 			IBoundedCommandSlim command = new BoundedRelayCommandSlim(() => new ValueTask(tcs.Task));
 			IBoundedCommandSlim<string> commandT = new BoundedRelayCommandSlim<string>(_ => new ValueTask(tcsT.Task));
 
@@ -329,8 +329,8 @@ namespace F0.Tests.Windows.Input
 			Assert.Equal(new int[] { 1 }, counts);
 			Assert.Equal(new int[] { 1 }, countsT);
 
-			tcs.SetResult(null);
-			tcsT.SetResult(null);
+			tcs.SetResult();
+			tcsT.SetResult();
 			await operation;
 			await operationT;
 
@@ -394,8 +394,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task RaiseCanExecuteChangedEvent()
 		{
-			TaskCompletionSource<object> tcs = new();
-			TaskCompletionSource<object> tcsT = new();
+			TaskCompletionSource tcs = new();
+			TaskCompletionSource tcsT = new();
 			IBoundedCommandSlim command = new BoundedRelayCommandSlim(() => new ValueTask(tcs.Task), 1);
 			IBoundedCommandSlim<string> commandT = new BoundedRelayCommandSlim<string>(_ => new ValueTask(tcsT.Task), 1);
 
@@ -432,8 +432,8 @@ namespace F0.Tests.Windows.Input
 			Assert.Equal(new bool[] { false }, canExecute);
 			Assert.Equal(new bool[] { false }, canExecuteT);
 
-			tcs.SetResult(null);
-			tcsT.SetResult(null);
+			tcs.SetResult();
+			tcsT.SetResult();
 			await operation;
 			await operationT;
 
@@ -461,8 +461,8 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task RaiseCanExecuteChangedEvent_WhenChangesToTheCurrentCountOccurThatAffectWhetherOrNotTheCommandShouldExecute()
 		{
-			TaskCompletionSource<object> tcs = new();
-			TaskCompletionSource<object> tcsT = new();
+			TaskCompletionSource tcs = new();
+			TaskCompletionSource tcsT = new();
 			IBoundedCommandSlim command = new BoundedRelayCommandSlim(() => new ValueTask(tcs.Task), 2);
 			IBoundedCommandSlim<string> commandT = new BoundedRelayCommandSlim<string>(_ => new ValueTask(tcsT.Task), 2);
 
@@ -519,8 +519,8 @@ namespace F0.Tests.Windows.Input
 			Assert.Equal(new bool[] { false }, canExecute);
 			Assert.Equal(new bool[] { false }, canExecuteT);
 
-			tcs.SetResult(null);
-			tcsT.SetResult(null);
+			tcs.SetResult();
+			tcsT.SetResult();
 			await operation1;
 			await operation1T;
 			await operation2;

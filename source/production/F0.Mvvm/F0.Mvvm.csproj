@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <AssemblyName>F0.Mvvm</AssemblyName>
     <RootNamespace>F0</RootNamespace>
   </PropertyGroup>
@@ -30,7 +30,7 @@
 - bounded strongly typed ValueTask-returning command (F0.Windows.Input.IBoundedCommandSlim&lt;T&gt;)</PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
   </ItemGroup>
 
