@@ -10,14 +10,14 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void DoNotCreateCommandWithNullDelegates()
 		{
-			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim(null));
-			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim<int>(null));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim(null!));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim<int>(null!));
 
-			Assert.Throws<ArgumentNullException>("onCanExecute", () => new AsyncRelayCommandSlim(() => default, null));
-			Assert.Throws<ArgumentNullException>("onCanExecute", () => new AsyncRelayCommandSlim<int>(_ => default, null));
+			Assert.Throws<ArgumentNullException>("onCanExecute", () => new AsyncRelayCommandSlim(() => default, null!));
+			Assert.Throws<ArgumentNullException>("onCanExecute", () => new AsyncRelayCommandSlim<int>(_ => default, null!));
 
-			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim(null, () => true));
-			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim<int>(null, _ => true));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim(null!, () => true));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new AsyncRelayCommandSlim<int>(null!, _ => true));
 		}
 
 		[Fact]

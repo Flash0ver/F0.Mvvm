@@ -6,8 +6,8 @@ namespace F0.Tests.Shared
 {
 	internal sealed class AsyncTestCommand : AsyncCommandBase
 	{
-		private readonly Action onCanExecute;
-		private readonly Func<Task> onExecute;
+		private readonly Action? onCanExecute;
+		private readonly Func<Task>? onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled
@@ -47,10 +47,10 @@ namespace F0.Tests.Shared
 		}
 	}
 
-	internal sealed class AsyncTestCommand<T> : AsyncCommandBase<T>
+	internal sealed class AsyncTestCommand<T> : AsyncCommandBase<T> where T : notnull
 	{
-		private readonly Action<T> onCanExecute;
-		private readonly Func<T, Task> onExecute;
+		private readonly Action<T>? onCanExecute;
+		private readonly Func<T, Task>? onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled

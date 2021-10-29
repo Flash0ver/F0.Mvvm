@@ -60,7 +60,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_FrameworkMethodsCallIntoParameterlessImplementations()
 		{
-			string text = null;
+			string? text = null;
 			ICommand command = new TestCommand(() => text = nameof(ICommand.CanExecute), () => text = nameof(ICommand.Execute));
 
 			bool canExecute = command.CanExecute(null);
@@ -74,7 +74,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_T_FrameworkMethodsCallIntoStronglyTypedImplementations()
 		{
-			string text = null;
+			string? text = null;
 			ICommand command = new TestCommand<string>(t => text = t, t => text = t);
 
 			bool canExecute = command.CanExecute(nameof(ICommand.CanExecute));
@@ -93,8 +93,8 @@ namespace F0.Tests.Windows.Input
 
 			static void CheckThatTheWeaklyTypedCommandMethodsAreObsolete(Type type)
 			{
-				MethodInfo canExecute = type.GetMethod(nameof(ICommand.CanExecute), new Type[] { typeof(object) });
-				MethodInfo execute = type.GetMethod(nameof(ICommand.Execute), new Type[] { typeof(object) });
+				MethodInfo? canExecute = type.GetMethod(nameof(ICommand.CanExecute), new Type[] { typeof(object) });
+				MethodInfo? execute = type.GetMethod(nameof(ICommand.Execute), new Type[] { typeof(object) });
 
 				Assert.NotNull(canExecute);
 				Assert.NotNull(execute);
@@ -105,7 +105,7 @@ namespace F0.Tests.Windows.Input
 
 			static void CheckThatMethodIsObsoleteWithError(MethodInfo methodInfo)
 			{
-				ObsoleteAttribute attribute = methodInfo.GetCustomAttribute<ObsoleteAttribute>();
+				ObsoleteAttribute? attribute = methodInfo.GetCustomAttribute<ObsoleteAttribute>();
 
 				Assert.NotNull(attribute);
 				Assert.True(attribute.IsError);
@@ -115,7 +115,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_EncourageTheUseOfOverloadedMethodsWhichTakeNoParameter()
 		{
-			string text = null;
+			string? text = null;
 			IInputCommand command = new TestCommand(() => text = nameof(IInputCommand.CanExecute), () => text = nameof(IInputCommand.Execute));
 
 			bool canExecute = command.CanExecute();
@@ -129,7 +129,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_T_EncourageTheUseOfOverloadedMethodsWhichTakeGenericParameter()
 		{
-			string text = null;
+			string? text = null;
 			IInputCommand<string> command = new TestCommand<string>(t => text = t, t => text = t);
 
 			bool canExecute = command.CanExecute(nameof(IInputCommand<string>.CanExecute));
@@ -167,9 +167,9 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_RaiseTheCanExecuteChangedEventToIndicateThatTheReturnValueOfTheCanExecuteMethodHasChanged()
 		{
-			string text = null;
+			string? text = null;
 			IInputCommand command = new TestCommand();
-			command.CanExecuteChanged += (sender, e) => text = $"{sender.GetType()} | {e.GetType()}";
+			command.CanExecuteChanged += (sender, e) => text = $"{sender!.GetType()} | {e.GetType()}";
 
 			Assert.Null(text);
 			command.RaiseCanExecuteChanged();
@@ -179,9 +179,9 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void CommandBase_T_RaiseCanExecuteChangedNeedsToBeCalledWheneverCanExecuteIsExpectedToReturnADifferentValue()
 		{
-			string text = null;
+			string? text = null;
 			IInputCommand<string> command = new TestCommand<string>();
-			command.CanExecuteChanged += (sender, e) => text = $"{sender.GetType()} | {e.GetType()}";
+			command.CanExecuteChanged += (sender, e) => text = $"{sender!.GetType()} | {e.GetType()}";
 
 			Assert.Null(text);
 			command.RaiseCanExecuteChanged();

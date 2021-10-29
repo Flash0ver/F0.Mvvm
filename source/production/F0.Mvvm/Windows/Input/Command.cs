@@ -15,12 +15,12 @@ namespace F0.Windows.Input
 			return new RelayCommand(onExecute, onCanExecute);
 		}
 
-		public static IInputCommand<T> Create<T>(Action<T> onExecute)
+		public static IInputCommand<T> Create<T>(Action<T> onExecute) where T : notnull
 		{
 			return new RelayCommand<T>(onExecute);
 		}
 
-		public static IInputCommand<T> Create<T>(Action<T> onExecute, Predicate<T> onCanExecute)
+		public static IInputCommand<T> Create<T>(Action<T> onExecute, Predicate<T> onCanExecute) where T : notnull
 		{
 			return new RelayCommand<T>(onExecute, onCanExecute);
 		}
@@ -35,12 +35,12 @@ namespace F0.Windows.Input
 			return new AsyncRelayCommand(onExecute, onCanExecute);
 		}
 
-		public static IAsyncCommand<T> Create<T>(Func<T, Task> onExecute)
+		public static IAsyncCommand<T> Create<T>(Func<T, Task> onExecute) where T : notnull
 		{
 			return new AsyncRelayCommand<T>(onExecute);
 		}
 
-		public static IAsyncCommand<T> Create<T>(Func<T, Task> onExecute, Predicate<T> onCanExecute)
+		public static IAsyncCommand<T> Create<T>(Func<T, Task> onExecute, Predicate<T> onCanExecute) where T : notnull
 		{
 			return new AsyncRelayCommand<T>(onExecute, onCanExecute);
 		}
@@ -55,12 +55,12 @@ namespace F0.Windows.Input
 			return new AsyncRelayCommandSlim(onExecute, onCanExecute);
 		}
 
-		public static IAsyncCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute)
+		public static IAsyncCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute) where T : notnull
 		{
 			return new AsyncRelayCommandSlim<T>(onExecute);
 		}
 
-		public static IAsyncCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute, Predicate<T> onCanExecute)
+		public static IAsyncCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute, Predicate<T> onCanExecute) where T : notnull
 		{
 			return new AsyncRelayCommandSlim<T>(onExecute, onCanExecute);
 		}
@@ -75,12 +75,12 @@ namespace F0.Windows.Input
 			return new BoundedRelayCommand(onExecute, onCanExecute, maxCount);
 		}
 
-		public static IBoundedCommand<T> Create<T>(Func<T, Task> onExecute, int maxCount)
+		public static IBoundedCommand<T> Create<T>(Func<T, Task> onExecute, int maxCount) where T : notnull
 		{
 			return new BoundedRelayCommand<T>(onExecute, maxCount);
 		}
 
-		public static IBoundedCommand<T> Create<T>(Func<T, Task> onExecute, Predicate<T> onCanExecute, int maxCount)
+		public static IBoundedCommand<T> Create<T>(Func<T, Task> onExecute, Predicate<T> onCanExecute, int maxCount) where T : notnull
 		{
 			return new BoundedRelayCommand<T>(onExecute, onCanExecute, maxCount);
 		}
@@ -95,12 +95,12 @@ namespace F0.Windows.Input
 			return new BoundedRelayCommandSlim(onExecute, onCanExecute, maxCount);
 		}
 
-		public static IBoundedCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute, int maxCount)
+		public static IBoundedCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute, int maxCount) where T : notnull
 		{
 			return new BoundedRelayCommandSlim<T>(onExecute, maxCount);
 		}
 
-		public static IBoundedCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute, Predicate<T> onCanExecute, int maxCount)
+		public static IBoundedCommandSlim<T> Create<T>(Func<T, ValueTask> onExecute, Predicate<T> onCanExecute, int maxCount) where T : notnull
 		{
 			return new BoundedRelayCommandSlim<T>(onExecute, onCanExecute, maxCount);
 		}

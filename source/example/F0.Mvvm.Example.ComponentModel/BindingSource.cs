@@ -22,17 +22,18 @@ namespace F0.Mvvm.Example.ComponentModel
 		}
 
 		internal BindingSource()
+			: this(null!, default!)
 		{
 		}
 
 		internal BindingSource(string caption)
+			: this(caption, default!)
 		{
-			Caption = caption;
 		}
 
 		internal BindingSource(T value)
+			: this(null!, value)
 		{
-			_value = value;
 		}
 
 		internal BindingSource(string caption, T value)

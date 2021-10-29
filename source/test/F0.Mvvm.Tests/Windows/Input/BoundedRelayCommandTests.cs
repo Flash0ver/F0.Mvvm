@@ -13,14 +13,14 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void DoNotCreateCommandWithNullDelegates()
 		{
-			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand(null));
-			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand<int>(null));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand(null!));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand<int>(null!));
 
-			Assert.Throws<ArgumentNullException>("onCanExecute", () => new BoundedRelayCommand(() => Task.CompletedTask, null));
-			Assert.Throws<ArgumentNullException>("onCanExecute", () => new BoundedRelayCommand<int>(_ => Task.CompletedTask, null));
+			Assert.Throws<ArgumentNullException>("onCanExecute", () => new BoundedRelayCommand(() => Task.CompletedTask, null!));
+			Assert.Throws<ArgumentNullException>("onCanExecute", () => new BoundedRelayCommand<int>(_ => Task.CompletedTask, null!));
 
-			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand(null, () => true));
-			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand<int>(null, _ => true));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand(null!, () => true));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new BoundedRelayCommand<int>(null!, _ => true));
 		}
 
 		[Theory]
@@ -296,20 +296,20 @@ namespace F0.Tests.Windows.Input
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task);
 
-			List<object> senders = new();
-			List<object> sendersT = new();
-			List<string> propertyNames = new();
-			List<string> propertyNamesT = new();
+			List<object?> senders = new();
+			List<object?> sendersT = new();
+			List<string?> propertyNames = new();
+			List<string?> propertyNamesT = new();
 			List<int> counts = new();
 			List<int> countsT = new();
 
-			void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+			void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
 			{
 				senders.Add(sender);
 				propertyNames.Add(e.PropertyName);
 				counts.Add(command.CurrentCount);
 			}
-			void OnPropertyChangedT(object sender, PropertyChangedEventArgs e)
+			void OnPropertyChangedT(object? sender, PropertyChangedEventArgs e)
 			{
 				sendersT.Add(sender);
 				propertyNamesT.Add(e.PropertyName);
@@ -399,20 +399,20 @@ namespace F0.Tests.Windows.Input
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task, 1);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task, 1);
 
-			List<object> senders = new();
-			List<object> sendersT = new();
+			List<object?> senders = new();
+			List<object?> sendersT = new();
 			List<EventArgs> eventArgs = new();
 			List<EventArgs> eventArgsT = new();
 			List<bool> canExecute = new();
 			List<bool> canExecuteT = new();
 
-			void OnCanExecuteChanged(object sender, EventArgs e)
+			void OnCanExecuteChanged(object? sender, EventArgs e)
 			{
 				senders.Add(sender);
 				eventArgs.Add(e);
 				canExecute.Add(command.CanExecute());
 			}
-			void OnCanExecuteChangedT(object sender, EventArgs e)
+			void OnCanExecuteChangedT(object? sender, EventArgs e)
 			{
 				sendersT.Add(sender);
 				eventArgsT.Add(e);
@@ -466,20 +466,20 @@ namespace F0.Tests.Windows.Input
 			IBoundedCommand command = new BoundedRelayCommand(() => tcs.Task, 2);
 			IBoundedCommand<string> commandT = new BoundedRelayCommand<string>(_ => tcsT.Task, 2);
 
-			List<object> senders = new();
-			List<object> sendersT = new();
+			List<object?> senders = new();
+			List<object?> sendersT = new();
 			List<EventArgs> eventArgs = new();
 			List<EventArgs> eventArgsT = new();
 			List<bool> canExecute = new();
 			List<bool> canExecuteT = new();
 
-			void OnCanExecuteChanged(object sender, EventArgs e)
+			void OnCanExecuteChanged(object? sender, EventArgs e)
 			{
 				senders.Add(sender);
 				eventArgs.Add(e);
 				canExecute.Add(command.CanExecute());
 			}
-			void OnCanExecuteChangedT(object sender, EventArgs e)
+			void OnCanExecuteChangedT(object? sender, EventArgs e)
 			{
 				sendersT.Add(sender);
 				eventArgsT.Add(e);

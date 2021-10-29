@@ -8,7 +8,7 @@ namespace F0.Windows.Input
 	internal sealed class BoundedRelayCommand : AsyncCommandBase, IBoundedCommand, INotifyPropertyChanged
 	{
 		private readonly Func<Task> onExecute;
-		private readonly Func<bool> onCanExecute;
+		private readonly Func<bool>? onCanExecute;
 		private int currentCount;
 
 		internal BoundedRelayCommand(Func<Task> onExecute)
@@ -39,7 +39,7 @@ namespace F0.Windows.Input
 			this.onCanExecute = onCanExecute ?? throw new ArgumentNullException(nameof(onCanExecute));
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler? PropertyChanged;
 
 		public int CurrentCount => currentCount;
 		public int MaxCount { get; }
@@ -74,10 +74,10 @@ namespace F0.Windows.Input
 		}
 	}
 
-	internal sealed class BoundedRelayCommand<T> : AsyncCommandBase<T>, IBoundedCommand<T>, INotifyPropertyChanged
+	internal sealed class BoundedRelayCommand<T> : AsyncCommandBase<T>, IBoundedCommand<T>, INotifyPropertyChanged where T : notnull
 	{
 		private readonly Func<T, Task> onExecute;
-		private readonly Predicate<T> onCanExecute;
+		private readonly Predicate<T>? onCanExecute;
 		private int currentCount;
 
 		internal BoundedRelayCommand(Func<T, Task> onExecute)
@@ -108,7 +108,7 @@ namespace F0.Windows.Input
 			this.onCanExecute = onCanExecute ?? throw new ArgumentNullException(nameof(onCanExecute));
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler? PropertyChanged;
 
 		public int CurrentCount => currentCount;
 		public int MaxCount { get; }

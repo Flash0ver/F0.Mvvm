@@ -4,13 +4,13 @@ namespace F0.Windows.Input
 {
 	public abstract class CommandBase : IInputCommand
 	{
-		public event EventHandler CanExecuteChanged;
+		public event EventHandler? CanExecuteChanged;
 
 		protected CommandBase()
 		{
 		}
 
-		public bool CanExecute(object parameter)
+		public bool CanExecute(object? parameter)
 		{
 			if (parameter is not null)
 			{
@@ -25,7 +25,7 @@ namespace F0.Windows.Input
 			return OnCanExecute();
 		}
 
-		public void Execute(object parameter)
+		public void Execute(object? parameter)
 		{
 			if (parameter is not null)
 			{
@@ -49,17 +49,17 @@ namespace F0.Windows.Input
 		protected abstract void OnExecute();
 	}
 
-	public abstract class CommandBase<T> : IInputCommand<T>
+	public abstract class CommandBase<T> : IInputCommand<T> where T : notnull
 	{
-		public event EventHandler CanExecuteChanged;
+		public event EventHandler? CanExecuteChanged;
 
 		protected CommandBase()
 		{
 		}
 
-		public bool CanExecute(object parameter)
+		public bool CanExecute(object? parameter)
 		{
-			return CanExecute((T)parameter);
+			return CanExecute((T)parameter!);
 		}
 
 		public bool CanExecute(T parameter)
@@ -72,9 +72,9 @@ namespace F0.Windows.Input
 			return OnCanExecute(parameter);
 		}
 
-		public void Execute(object parameter)
+		public void Execute(object? parameter)
 		{
-			Execute((T)parameter);
+			Execute((T)parameter!);
 		}
 
 		public void Execute(T parameter)

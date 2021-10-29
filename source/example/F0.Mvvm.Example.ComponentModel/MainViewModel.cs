@@ -18,6 +18,7 @@ namespace F0.Mvvm.Example.ComponentModel
 
 		public MainViewModel()
 		{
+			UpTime = null!;
 			TimeIntervalComponents = new ObservableCollection<BindingSource<int, TimeSpan>>()
 			{
 				new BindingSource<int, TimeSpan>("Milliseconds", static time => time.Milliseconds),
@@ -30,7 +31,7 @@ namespace F0.Mvvm.Example.ComponentModel
 			timer = new Timer(OnTimerCallback, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(1));
 		}
 
-		private void OnTimerCallback(object state)
+		private void OnTimerCallback(object? state)
 		{
 			TimeSpan elapsed = stopwatch.Elapsed;
 

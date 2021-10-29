@@ -9,14 +9,14 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void DoNotCreateCommandWithNullDelegates()
 		{
-			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand(null));
-			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand<int>(null));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand(null!));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand<int>(null!));
 
-			Assert.Throws<ArgumentNullException>("onCanExecute", () => new RelayCommand(() => { }, null));
-			Assert.Throws<ArgumentNullException>("onCanExecute", () => new RelayCommand<int>(_ => { }, null));
+			Assert.Throws<ArgumentNullException>("onCanExecute", () => new RelayCommand(() => { }, null!));
+			Assert.Throws<ArgumentNullException>("onCanExecute", () => new RelayCommand<int>(_ => { }, null!));
 
-			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand(null, () => true));
-			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand<int>(null, _ => true));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand(null!, () => true));
+			Assert.Throws<ArgumentNullException>("onExecute", () => new RelayCommand<int>(null!, _ => true));
 		}
 
 		[Fact]

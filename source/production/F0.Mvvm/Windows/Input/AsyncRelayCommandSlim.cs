@@ -6,7 +6,7 @@ namespace F0.Windows.Input
 	internal sealed class AsyncRelayCommandSlim : AsyncCommandSlimBase
 	{
 		private readonly Func<ValueTask> onExecute;
-		private readonly Func<bool> onCanExecute;
+		private readonly Func<bool>? onCanExecute;
 
 		internal AsyncRelayCommandSlim(Func<ValueTask> onExecute)
 		{
@@ -30,10 +30,10 @@ namespace F0.Windows.Input
 		}
 	}
 
-	internal sealed class AsyncRelayCommandSlim<T> : AsyncCommandSlimBase<T>
+	internal sealed class AsyncRelayCommandSlim<T> : AsyncCommandSlimBase<T> where T : notnull
 	{
 		private readonly Func<T, ValueTask> onExecute;
-		private readonly Predicate<T> onCanExecute;
+		private readonly Predicate<T>? onCanExecute;
 
 		internal AsyncRelayCommandSlim(Func<T, ValueTask> onExecute)
 		{

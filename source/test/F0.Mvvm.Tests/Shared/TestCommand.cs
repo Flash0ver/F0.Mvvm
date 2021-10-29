@@ -5,8 +5,8 @@ namespace F0.Tests.Shared
 {
 	internal sealed class TestCommand : CommandBase
 	{
-		private readonly Action onCanExecute;
-		private readonly Action onExecute;
+		private readonly Action? onCanExecute;
+		private readonly Action? onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled
@@ -46,10 +46,10 @@ namespace F0.Tests.Shared
 		}
 	}
 
-	internal sealed class TestCommand<T> : CommandBase<T>
+	internal sealed class TestCommand<T> : CommandBase<T> where T : notnull
 	{
-		private readonly Action<T> onCanExecute;
-		private readonly Action<T> onExecute;
+		private readonly Action<T>? onCanExecute;
+		private readonly Action<T>? onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled

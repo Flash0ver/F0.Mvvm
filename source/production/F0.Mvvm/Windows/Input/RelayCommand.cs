@@ -5,7 +5,7 @@ namespace F0.Windows.Input
 	internal sealed class RelayCommand : CommandBase
 	{
 		private readonly Action onExecute;
-		private readonly Func<bool> onCanExecute;
+		private readonly Func<bool>? onCanExecute;
 
 		internal RelayCommand(Action onExecute)
 		{
@@ -29,10 +29,10 @@ namespace F0.Windows.Input
 		}
 	}
 
-	internal sealed class RelayCommand<T> : CommandBase<T>
+	internal sealed class RelayCommand<T> : CommandBase<T> where T : notnull
 	{
 		private readonly Action<T> onExecute;
-		private readonly Predicate<T> onCanExecute;
+		private readonly Predicate<T>? onCanExecute;
 
 		internal RelayCommand(Action<T> onExecute)
 		{

@@ -8,7 +8,7 @@ namespace F0.Windows.Input
 	internal sealed class BoundedRelayCommandSlim : AsyncCommandSlimBase, IBoundedCommandSlim, INotifyPropertyChanged
 	{
 		private readonly Func<ValueTask> onExecute;
-		private readonly Func<bool> onCanExecute;
+		private readonly Func<bool>? onCanExecute;
 		private int currentCount;
 
 		internal BoundedRelayCommandSlim(Func<ValueTask> onExecute)
@@ -39,7 +39,7 @@ namespace F0.Windows.Input
 			this.onCanExecute = onCanExecute ?? throw new ArgumentNullException(nameof(onCanExecute));
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler? PropertyChanged;
 
 		public int CurrentCount => currentCount;
 		public int MaxCount { get; }
@@ -73,10 +73,10 @@ namespace F0.Windows.Input
 		}
 	}
 
-	internal sealed class BoundedRelayCommandSlim<T> : AsyncCommandSlimBase<T>, IBoundedCommandSlim<T>, INotifyPropertyChanged
+	internal sealed class BoundedRelayCommandSlim<T> : AsyncCommandSlimBase<T>, IBoundedCommandSlim<T>, INotifyPropertyChanged where T : notnull
 	{
 		private readonly Func<T, ValueTask> onExecute;
-		private readonly Predicate<T> onCanExecute;
+		private readonly Predicate<T>? onCanExecute;
 		private int currentCount;
 
 		internal BoundedRelayCommandSlim(Func<T, ValueTask> onExecute)
@@ -107,7 +107,7 @@ namespace F0.Windows.Input
 			this.onCanExecute = onCanExecute ?? throw new ArgumentNullException(nameof(onCanExecute));
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler? PropertyChanged;
 
 		public int CurrentCount => currentCount;
 		public int MaxCount { get; }

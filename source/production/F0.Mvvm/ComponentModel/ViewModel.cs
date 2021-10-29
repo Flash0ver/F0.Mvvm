@@ -8,13 +8,13 @@ namespace F0.ComponentModel
 {
 	public abstract class ViewModel : INotifyPropertyChanged
 	{
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler? PropertyChanged;
 
 		protected ViewModel()
 		{
 		}
 
-		protected void SetProperty<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
+		protected void SetProperty<T>(ref T backingField, T value, [CallerMemberName] string? propertyName = null)
 		{
 			if (!EqualityComparer<T>.Default.Equals(backingField, value))
 			{
@@ -23,7 +23,7 @@ namespace F0.ComponentModel
 			}
 		}
 
-		protected bool TrySetProperty<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
+		protected bool TrySetProperty<T>(ref T backingField, T value, [CallerMemberName] string? propertyName = null)
 		{
 			if (EqualityComparer<T>.Default.Equals(backingField, value))
 			{
@@ -43,7 +43,7 @@ namespace F0.ComponentModel
 			RaisePropertyChangedEvent(propertyName);
 		}
 
-		private void RaisePropertyChangedEvent(string propertyName)
+		private void RaisePropertyChangedEvent(string? propertyName)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}

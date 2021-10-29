@@ -76,6 +76,9 @@ namespace F0.Mvvm.Example.Windows.Input
 			BeginOperationCommand = Command.Create(BeginOperationAsync, 3);
 
 			Operations = new ObservableCollection<Operation>();
+
+			repoInfo = null!;
+			userInfo = null!;
 		}
 
 		private async Task FetchRepoInfoAsync()

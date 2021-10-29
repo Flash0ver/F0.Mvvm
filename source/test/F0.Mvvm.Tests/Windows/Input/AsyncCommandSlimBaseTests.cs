@@ -61,7 +61,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void AsyncCommandSlimBase_FrameworkMethodsCallIntoParameterlessImplementations()
 		{
-			string text = null;
+			string? text = null;
 			ICommand command = new AsyncTestCommandSlim(() => text = nameof(ICommand.CanExecute), () => { text = nameof(ICommand.Execute); return default; });
 
 			bool canExecute = command.CanExecute(null);
@@ -75,7 +75,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void AsyncCommandSlimBase_T_FrameworkMethodsCallIntoStronglyTypedImplementations()
 		{
-			string text = null;
+			string? text = null;
 			ICommand command = new AsyncTestCommandSlim<string>(t => text = t, t => { text = t; return default; });
 
 			bool canExecute = command.CanExecute(nameof(ICommand.CanExecute));
@@ -94,8 +94,8 @@ namespace F0.Tests.Windows.Input
 
 			static void CheckThatTheWeaklyTypedCommandMethodsAreObsolete(Type type)
 			{
-				MethodInfo canExecute = type.GetMethod(nameof(ICommand.CanExecute), new Type[] { typeof(object) });
-				MethodInfo execute = type.GetMethod(nameof(ICommand.Execute), new Type[] { typeof(object) });
+				MethodInfo? canExecute = type.GetMethod(nameof(ICommand.CanExecute), new Type[] { typeof(object) });
+				MethodInfo? execute = type.GetMethod(nameof(ICommand.Execute), new Type[] { typeof(object) });
 
 				Assert.NotNull(canExecute);
 				Assert.NotNull(execute);
@@ -106,7 +106,7 @@ namespace F0.Tests.Windows.Input
 
 			static void CheckThatMethodIsObsoleteWithError(MethodInfo methodInfo)
 			{
-				ObsoleteAttribute attribute = methodInfo.GetCustomAttribute<ObsoleteAttribute>();
+				ObsoleteAttribute? attribute = methodInfo.GetCustomAttribute<ObsoleteAttribute>();
 
 				Assert.NotNull(attribute);
 				Assert.True(attribute.IsError);
@@ -116,7 +116,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task AsyncCommandSlimBase_EncourageTheUseOfOverloadedMethodsWhichTakeNoParameter()
 		{
-			string text = null;
+			string? text = null;
 			IAsyncCommandSlim command = new AsyncTestCommandSlim(() => text = nameof(IAsyncCommandSlim.CanExecute), async () => { await Task.Yield(); text = nameof(IAsyncCommandSlim.Execute); });
 
 			bool canExecute = command.CanExecute();
@@ -130,7 +130,7 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public async Task AsyncCommandSlimBase_T_EncourageTheUseOfOverloadedMethodsWhichTakeGenericParameter()
 		{
-			string text = null;
+			string? text = null;
 			IAsyncCommandSlim<string> command = new AsyncTestCommandSlim<string>(t => text = t, async t => { await Task.Yield(); text = t; });
 
 			bool canExecute = command.CanExecute(nameof(IAsyncCommandSlim<string>.CanExecute));
@@ -168,9 +168,9 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void AsyncCommandSlimBase_RaiseTheCanExecuteChangedEventToIndicateThatTheReturnValueOfTheCanExecuteMethodHasChanged()
 		{
-			string text = null;
+			string? text = null;
 			IAsyncCommandSlim command = new AsyncTestCommandSlim();
-			command.CanExecuteChanged += (sender, e) => text = $"{sender.GetType()} | {e.GetType()}";
+			command.CanExecuteChanged += (sender, e) => text = $"{sender!.GetType()} | {e.GetType()}";
 
 			Assert.Null(text);
 			command.RaiseCanExecuteChanged();
@@ -180,9 +180,9 @@ namespace F0.Tests.Windows.Input
 		[Fact]
 		public void AsyncCommandSlimBase_T_RaiseCanExecuteChangedNeedsToBeCalledWheneverCanExecuteIsExpectedToReturnADifferentValue()
 		{
-			string text = null;
+			string? text = null;
 			IAsyncCommandSlim<string> command = new AsyncTestCommandSlim<string>();
-			command.CanExecuteChanged += (sender, e) => text = $"{sender.GetType()} | {e.GetType()}";
+			command.CanExecuteChanged += (sender, e) => text = $"{sender!.GetType()} | {e.GetType()}";
 
 			Assert.Null(text);
 			command.RaiseCanExecuteChanged();

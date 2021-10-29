@@ -3,11 +3,11 @@ namespace System.Threading.Tasks
 {
 	internal class TaskCompletionSource
 	{
-		private readonly TaskCompletionSource<object> tcs;
+		private readonly TaskCompletionSource<object?> tcs;
 
 		public TaskCompletionSource()
 		{
-			tcs = new TaskCompletionSource<object>();
+			tcs = new TaskCompletionSource<object?>();
 		}
 
 		public Task Task => tcs.Task;

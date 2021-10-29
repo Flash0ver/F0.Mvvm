@@ -9,14 +9,14 @@ namespace F0.Tests.ComponentModel
 	public class ViewModelTests : IDisposable
 	{
 		private readonly TestViewModel viewModel;
-		private readonly List<string> propertyNames;
+		private readonly List<string?> propertyNames;
 
 		public ViewModelTests()
 		{
 			viewModel = new TestViewModel();
 			viewModel.PropertyChanged += OnPropertyChanged;
 
-			propertyNames = new List<string>();
+			propertyNames = new List<string?>();
 		}
 
 		void IDisposable.Dispose()
@@ -25,7 +25,7 @@ namespace F0.Tests.ComponentModel
 			Assert.Empty(propertyNames);
 		}
 
-		private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			Assert.Same(sender, viewModel);
 			propertyNames.Add(e.PropertyName);

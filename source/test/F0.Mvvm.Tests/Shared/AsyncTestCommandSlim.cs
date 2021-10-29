@@ -6,8 +6,8 @@ namespace F0.Tests.Shared
 {
 	internal sealed class AsyncTestCommandSlim : AsyncCommandSlimBase
 	{
-		private readonly Action onCanExecute;
-		private readonly Func<ValueTask> onExecute;
+		private readonly Action? onCanExecute;
+		private readonly Func<ValueTask>? onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled
@@ -47,10 +47,10 @@ namespace F0.Tests.Shared
 		}
 	}
 
-	internal sealed class AsyncTestCommandSlim<T> : AsyncCommandSlimBase<T>
+	internal sealed class AsyncTestCommandSlim<T> : AsyncCommandSlimBase<T> where T : notnull
 	{
-		private readonly Action<T> onCanExecute;
-		private readonly Func<T, ValueTask> onExecute;
+		private readonly Action<T>? onCanExecute;
+		private readonly Func<T, ValueTask>? onExecute;
 
 		private bool isEnabled;
 		public bool IsEnabled

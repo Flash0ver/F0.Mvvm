@@ -6,7 +6,7 @@ namespace F0.Windows.Input
 	internal sealed class AsyncRelayCommand : AsyncCommandBase
 	{
 		private readonly Func<Task> onExecute;
-		private readonly Func<bool> onCanExecute;
+		private readonly Func<bool>? onCanExecute;
 
 		internal AsyncRelayCommand(Func<Task> onExecute)
 		{
@@ -30,10 +30,10 @@ namespace F0.Windows.Input
 		}
 	}
 
-	internal sealed class AsyncRelayCommand<T> : AsyncCommandBase<T>
+	internal sealed class AsyncRelayCommand<T> : AsyncCommandBase<T> where T : notnull
 	{
 		private readonly Func<T, Task> onExecute;
-		private readonly Predicate<T> onCanExecute;
+		private readonly Predicate<T>? onCanExecute;
 
 		internal AsyncRelayCommand(Func<T, Task> onExecute)
 		{

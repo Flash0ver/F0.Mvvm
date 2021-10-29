@@ -5,13 +5,13 @@ namespace F0.Windows.Input
 {
 	public abstract class AsyncCommandBase : IAsyncCommand
 	{
-		public event EventHandler CanExecuteChanged;
+		public event EventHandler? CanExecuteChanged;
 
 		protected AsyncCommandBase()
 		{
 		}
 
-		public bool CanExecute(object parameter)
+		public bool CanExecute(object? parameter)
 		{
 			if (parameter is not null)
 			{
@@ -26,7 +26,7 @@ namespace F0.Windows.Input
 			return OnCanExecute();
 		}
 
-		public async void Execute(object parameter)
+		public async void Execute(object? parameter)
 		{
 			await InternalExecuteAsync(parameter);
 		}
@@ -41,7 +41,7 @@ namespace F0.Windows.Input
 			CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		internal async Task InternalExecuteAsync(object parameter)
+		internal async Task InternalExecuteAsync(object? parameter)
 		{
 			if (parameter is not null)
 			{
@@ -55,17 +55,17 @@ namespace F0.Windows.Input
 		protected abstract Task OnExecuteAsync();
 	}
 
-	public abstract class AsyncCommandBase<T> : IAsyncCommand<T>
+	public abstract class AsyncCommandBase<T> : IAsyncCommand<T> where T : notnull
 	{
-		public event EventHandler CanExecuteChanged;
+		public event EventHandler? CanExecuteChanged;
 
 		protected AsyncCommandBase()
 		{
 		}
 
-		public bool CanExecute(object parameter)
+		public bool CanExecute(object? parameter)
 		{
-			return CanExecute((T)parameter);
+			return CanExecute((T)parameter!);
 		}
 
 		public bool CanExecute(T parameter)
@@ -78,7 +78,7 @@ namespace F0.Windows.Input
 			return OnCanExecute(parameter);
 		}
 
-		public async void Execute(object parameter)
+		public async void Execute(object? parameter)
 		{
 			await InternalExecuteAsync(parameter);
 		}
@@ -98,9 +98,9 @@ namespace F0.Windows.Input
 			CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		internal async Task InternalExecuteAsync(object parameter)
+		internal async Task InternalExecuteAsync(object? parameter)
 		{
-			await ExecuteAsync((T)parameter);
+			await ExecuteAsync((T)parameter!);
 		}
 
 		protected abstract bool OnCanExecute(T parameter);
