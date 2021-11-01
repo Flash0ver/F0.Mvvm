@@ -10,7 +10,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageId>F0.Mvvm</PackageId>
-    <Version>0.7.0</Version>
+    <Version>$(F0Version)</Version>
     <Authors>Flash0ver</Authors>
     <Company>f[0]</Company>
     <Product>F0.Mvvm</Product>
@@ -23,11 +23,7 @@
     <RepositoryUrl>https://github.com/Flash0ver/F0.Mvvm.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>f[0] f0 mvvm xaml</PackageTags>
-    <PackageReleaseNotes>Added bounded asynchronous abstractions (with implementations) of System.Windows.Input.ICommand, which limit the number of concurrently executing operations:
-- bounded parameterless Task-returning command (F0.Windows.Input.IBoundedCommand)
-- bounded strongly typed Task-returning command (F0.Windows.Input.IBoundedCommand&lt;T&gt;)
-- bounded parameterless ValueTask-returning command (F0.Windows.Input.IBoundedCommandSlim)
-- bounded strongly typed ValueTask-returning command (F0.Windows.Input.IBoundedCommandSlim&lt;T&gt;)</PackageReleaseNotes>
+    <PackageReleaseNotes>$(F0PackageReleaseNotes)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
