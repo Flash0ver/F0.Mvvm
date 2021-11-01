@@ -30,6 +30,10 @@
 - bounded strongly typed ValueTask-returning command (F0.Windows.Input.IBoundedCommandSlim&lt;T&gt;)</PackageReleaseNotes>
   </PropertyGroup>
 
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
   </ItemGroup>
