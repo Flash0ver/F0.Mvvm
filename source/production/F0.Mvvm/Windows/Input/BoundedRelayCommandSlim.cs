@@ -57,6 +57,7 @@ namespace F0.Windows.Input
 			{
 				RaiseCanExecuteChanged();
 			}
+
 			try
 			{
 				await onExecute();
@@ -125,6 +126,7 @@ namespace F0.Windows.Input
 			{
 				RaiseCanExecuteChanged();
 			}
+
 			try
 			{
 				await onExecute(parameter);

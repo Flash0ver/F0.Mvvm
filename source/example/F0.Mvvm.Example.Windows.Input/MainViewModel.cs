@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -108,7 +109,8 @@ namespace F0.Mvvm.Example.Windows.Input
 			StringBuilder builder = new($"{releases.Count} Releases\n");
 			foreach (Release release in releases.Where(static r => !r.Draft))
 			{
-				builder.Append($"- {release.Name} ({release.TagName})\n");
+				string prerelease = release.Prerelease ? " [pre-release]" : String.Empty;
+				builder.Append($"- {release.Name} ({release.TagName}){prerelease}\n");
 				builder.Append($"\t{release.Body}\n");
 				builder.Append($"\t{release.HtmlUrl}\n");
 				builder.Append($"\t{release.PublishedAt}\n");
