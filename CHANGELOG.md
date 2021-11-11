@@ -2,6 +2,8 @@
 CHANGELOG
 
 ## vNext
+
+## v0.8.0 (2021-11-11)
 - Added target framework: `.NET 5`.
 - Added support for platform `browser`.
 - Added annotations for _nullable reference types_.

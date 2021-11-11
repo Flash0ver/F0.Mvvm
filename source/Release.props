@@ -1,12 +1,10 @@
 <Project>
 
   <PropertyGroup>
-    <F0Version>0.7.0</F0Version>
-    <F0PackageReleaseNotes>Added bounded asynchronous abstractions (with implementations) of System.Windows.Input.ICommand, which limit the number of concurrently executing operations:
-- bounded parameterless Task-returning command (F0.Windows.Input.IBoundedCommand)
-- bounded strongly typed Task-returning command (F0.Windows.Input.IBoundedCommand&lt;T&gt;)
-- bounded parameterless ValueTask-returning command (F0.Windows.Input.IBoundedCommandSlim)
-- bounded strongly typed ValueTask-returning command (F0.Windows.Input.IBoundedCommandSlim&lt;T&gt;)</F0PackageReleaseNotes>
+    <F0Version>0.8.0</F0Version>
+    <F0PackageReleaseNotes>- Annotated APIs for nullable reference types
+- Added target framework: .NET 5
+- Added support for platform: browser</F0PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
