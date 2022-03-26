@@ -9,7 +9,8 @@ This repo contains .NET Class Libraries for implementing XAML applications using
 [NuGet package](https://www.nuget.org/packages/F0.Mvvm/)
 
 ## API Browser / Package Viewer
-[fuget](https://www.fuget.org/packages/F0.Mvvm)\
+[NuGet Package Explorer](https://nuget.info/packages/F0.Mvvm)\
+[FuGet Package Explorer](https://www.fuget.org/packages/F0.Mvvm)\
 [DotNetApis](http://dotnetapis.com/pkg/F0.Mvvm)\
 [NuGet Must Haves](https://nugetmusthaves.com/Package/F0.Mvvm)\
 [NuGet Trends](https://nugettrends.com/packages?months=12&ids=F0.Mvvm)
