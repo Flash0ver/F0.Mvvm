@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F672855-125B-4BE2-8FE8-3E0E0187EBB4}"
 EndProject
@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F0.Mvvm.Tests", "test\F0.Mv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{96C34169-FDE3-4731-8BEB-105BF4B4332D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F0.Mvvm.Example.ComponentModel", "example\F0.Mvvm.Example.ComponentModel\F0.Mvvm.Example.ComponentModel.csproj", "{DED51FD4-44BC-4876-8316-4EAF361B81FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F0.Mvvm.Example.ComponentModel", "example\F0.Mvvm.Example.ComponentModel\F0.Mvvm.Example.ComponentModel.csproj", "{DED51FD4-44BC-4876-8316-4EAF361B81FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F0.Mvvm.Example.Windows.Input", "example\F0.Mvvm.Example.Windows.Input\F0.Mvvm.Example.Windows.Input.csproj", "{E2BACEED-7019-4B24-88A1-311531467DAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F0.Mvvm.Example.Windows.Input", "example\F0.Mvvm.Example.Windows.Input\F0.Mvvm.Example.Windows.Input.csproj", "{E2BACEED-7019-4B24-88A1-311531467DAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
